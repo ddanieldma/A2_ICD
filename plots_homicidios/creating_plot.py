@@ -1,4 +1,4 @@
-from organizando_dados import index_values, data_homicides_by_continent
+from organizing_data import index_values, data_homicides_by_continent
 from bokeh.plotting import figure, output_file, show
 from bokeh.layouts import gridplot
 from bokeh.models import NumeralTickFormatter
