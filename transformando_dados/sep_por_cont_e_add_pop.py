@@ -36,22 +36,23 @@ for titulo in range(4,34):
     populacao.rename(columns = {populacao.columns[titulo] : ano}, inplace=True)
 
 # Colocando as colunas como linhas com a função pd.melt
-populacao = pd.melt(populacao, id_vars=['Country Name', 'Country Code', 'Series Name', 'Series Code'], var_name= "Year", value_name="Value")
+populacao = pd.melt(populacao, id_vars=["Country Name", "Country Code", "Series Name", "Series Code"], var_name= "Year", value_name="Value")
 
 # Garantindo que o ano seja tratado como inteiro
 populacao["Year"] = populacao["Year"].astype(int)
 
 # Juntando os dataframes populacao e causas_de_morte
-causas_de_morte = causas_de_morte.merge(populacao, left_on=['Country/Territory', 'Year'], right_on=['Country Name', 'Year'], how='left')
+causas_de_morte = causas_de_morte.merge(populacao, left_on=["Country/Territory", "Year"], right_on=["Country Name", "Year"], how="left")
 
 # Adicionando a coluna População com base na coluna "Value"
-causas_de_morte.loc[causas_de_morte['Country Name'].notnull(), 'população'] = causas_de_morte['Value']
+causas_de_morte.loc[causas_de_morte["Country Name"].notnull(), "Population"] = causas_de_morte["Value"]
+
 
 # Excluindo colunas desnecessárias
-causas_de_morte = causas_de_morte.drop(['Country Name', 'Value'], axis=1)
+causas_de_morte = causas_de_morte.drop(["Country Name", "Value", "Series Name", "Series Code"], axis=1)
 
 # Colocando a base num csv
-causas_de_morte.to_csv("../new_cause_of_death.csv")
+causas_de_morte.to_csv("../new_cause_of_death.csv", index=False)
 
 
 
