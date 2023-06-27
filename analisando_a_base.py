@@ -35,7 +35,7 @@ y3 = df_causas_de_morte_Brasil["Total Deaths"]
 # Somando todos os valores das colunas
 cols_to_sum = df_causas_de_morte.columns[df_causas_de_morte.columns.get_loc("Meningitis") : df_causas_de_morte.columns.get_loc("Continente")]
 # Somando todos os anos
-juntando_os_dados = df_causas_de_morte.groupby("Code")[cols_to_sum].sum().set_index("Code")
+juntando_os_dados = df_causas_de_morte.groupby("Code")[cols_to_sum].sum()
 
 # Fazendo um loop for para pegar apenas as doenças nas quais o Brasil aparece no top 10 com mais casos
 paises_com_maiores_casos = {}
@@ -49,22 +49,22 @@ for nome in juntando_os_dados.columns:
 #     print(paises)
 #     print()
 
-# criando o gráfico
-grafico_1 = figure()
-grafico_2 = figure()
-grafico_3 = figure()
-gráfico_4 = figure()
+# # criando o gráfico
+# grafico_1 = figure()
+# grafico_2 = figure()
+# grafico_3 = figure()
+# gráfico_4 = figure()
 
-# adicionando o glifo a eles
-grafico_1.circle(x1,y1)
-grafico_2.line(x2,y2)
-grafico_3.line(x3,y3)
+# # adicionando o glifo a eles
+# grafico_1.circle(x1,y1)
+# grafico_2.line(x2,y2)
+# grafico_3.line(x3,y3)
 
-# plotando o grid
-grafico_teste = gridplot([[grafico_1], [grafico_2], [grafico_3]])
+# # plotando o grid
+# grafico_teste = gridplot([[grafico_1], [grafico_2], [grafico_3]])
 
-# abrindo o html com o gráfico
-show(grafico_teste)
+# # abrindo o html com o gráfico
+# show(grafico_teste)
 
 """
 O gráfico do Brasil possui algo curioso, pois o núemro de mortes a cada 100 mil habitantes caiu de 1990 até 2005 e depois começou a subir novamente.
