@@ -3,7 +3,7 @@ from bokeh.plotting import figure
 from bokeh.io import output_file, save, show
 from bokeh.models import ColumnDataSource
 
-df = pd.read_csv("new_cause_of_death.csv")
+df = pd.read_csv("../new_cause_of_death.csv")
 
 df_drowning_sum = df.groupby('Year')['Drowning'].sum().reset_index()
 

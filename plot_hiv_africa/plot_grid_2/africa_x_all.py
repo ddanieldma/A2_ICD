@@ -4,7 +4,7 @@ from bokeh.io import output_file, save, show
 from bokeh.models import ColumnDataSource
 from bokeh.transform import factor_cmap
 
-df = pd.read_csv("new_cause_of_death.csv")
+df = pd.read_csv("../../new_cause_of_death.csv")
 
 df_cont_hiv = df.groupby('Continente')['HIV/AIDS'].sum().reset_index()
 
