@@ -25,47 +25,16 @@ top_3_values_per_continent = top_3_values_per_continent.to_frame()
 # Tirando o index como algo de multicategoria
 top_3_values_per_continent = top_3_values_per_continent.reset_index()
 
+# Fazendo um Grid para mostrar as principais causas de mortes desde 1990 no numdo
 
-# Fazendo um gráfico anular
-# Vamos separar algumas variáveis que iremos utilizar
-Diseases = top_3_values_per_continent["Name of the disease"].unique()
-# As cores que iremos utilizar para o gráfico
-Colors = ["#f94144", "#f3722c", "#f8961e", "#f9c74f", "#90be6d", "#43aa8b", "#577590"]
-# As cores que utilizaremos para mapear os continentes
-Continents = {"Africa" : "Yellow", "North America" : "Red", "South America" : "DarkRed", "Europe" : "Black", "Oceania" : "Blue", "Asia" : "Green"}
+grafico_africa = figure()
+grafico_asia = figure()
+grafico_europe = figure()
+grafico_north_america = figure()
+grafico_south_america = figure()
+gráfico_oceania = figure()
 
-# Para fazer um gráfico anular, precisaremos dos angulos de cada uma das fatias
-# para isso, vamos adicionar esses angulos como propriedades do dataframe
-big_angle = 2 * np.pi / 7
-angles = np.pi/2 - 3 * big_angle/2 - np.vectorize(math.floor)((np.array(top_3_values_per_continent.index))/3) * big_angle
-top_3_values_per_continent["start"] = angles
-top_3_values_per_continent["end"] = angles + big_angle
-top_3_values_per_continent["Colors"]= top_3_values_per_continent["Continente"].map(Continents)
-# Vamos definir a escala do nosso gráfico anular
-micmin = np.sqrt(np.log(.001*1E4))
-micmax = np.sqrt(np.log(1000*1E4))
-def scale(mic):
-    return - np.sqrt(np.log(mic * 1E4)) + (micmin + micmax)
-# Definindo o nosso dataframe como ColumnDataSource
-source = ColumnDataSource(top_3_values_per_continent)
+# Definindo os parâmetros para o gráfico da áfrica
 
-# Plotando nosso gráfico
-grafico_1 = figure(
-    width=800, height=800, title=None, tools="", toolbar_location=None,
-    x_axis_type=None, y_axis_type=None, match_aspect=True,
-    min_border=0, outline_line_color="black", background_fill_color="#f0e1d2",
-)
-
-glifo = grafico_1.annular_wedge(x=0, y=0, inner_radius=micmax, outer_radius= micmin, start_angle="start", end_angle = "end", fill_color="Colors", line_color="#f0e1d2", source=source)
-
-
-radii = scale(10.0 ** np.arange(-3, 4))
-grafico_1.circle(0, 0, radius=radii, fill_color=None, line_color="#f0e1d2")
-grafico_1.text(0, radii, ["0.001", "0.01", "0.1", "1", "10", "100", "1000"],
-    text_font_size="12px", anchor="center")
-
-
-
-
-print(top_3_values_per_continent)
-show(grafico_1)
+grafico_africa.width = 1020
+grafico_africa.length = 960
