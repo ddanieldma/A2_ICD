@@ -38,19 +38,41 @@ grafico_asia = figure(x_range = top_3_asia.data["Name of the disease"])
 grafico_europe = figure(x_range = top_3_europe.data["Name of the disease"])
 grafico_north_america = figure(x_range = top_3_north_america.data["Name of the disease"])
 grafico_south_america = figure(x_range = top_3_south_america.data["Name of the disease"])
-gráfico_oceania = figure(x_range = top_3_oceania.data["Name of the disease"])
+grafico_oceania = figure(x_range = top_3_oceania.data["Name of the disease"])
 
 
 # Definindo os parâmetros para o gráfico da áfrica
 grafico_africa.vbar(x = "Name of the disease", top = "Number of cases", width = 0.8 ,source = top_3_africa)
 
-# Colocando em resolução HD
-grafico_africa.width = 1280
-grafico_africa.height = 720
+# # Colocando em resolução HD
+# grafico_africa.width = 1280
+# grafico_africa.height = 720
 
-# Definindo as propiedades do título
-grafico_africa.title.text = "Africa"
-grafico_africa.title.text_color = "Black"
+# # Definindo as propiedades do título
+# grafico_africa.title.text = "Africa"
+# grafico_africa.title.text_color = "Black"
+# figure.title.text_font = "fantasy"
+# figure.title.text_font_size = "42px"
+# figure.title.align = "center"
+
+
+# Gráfico Asia
+grafico_asia.vbar(x = "Name of the disease", top = "Number of cases", width = 0.8 ,source = top_3_asia)
+
+#Gráfico Europa
+grafico_europe.vbar(x = "Name of the disease", top = "Number of cases", width = 0.8 ,source = top_3_europe)
+
+#Gráfico North America 
+grafico_north_america.vbar(x = "Name of the disease", top = "Number of cases", width = 0.8 ,source = top_3_north_america)
+
+# Gráfico South America
+grafico_south_america.vbar(x = "Name of the disease", top = "Number of cases", width = 0.8 ,source = top_3_south_america)
+
+# Gráfico Oceania
+grafico_oceania.vbar(x = "Name of the disease", top = "Number of cases", width = 0.8 ,source = top_3_oceania)
+
+
+together = gridplot([[ grafico_africa, grafico_asia, grafico_europe], [grafico_north_america, grafico_south_america, grafico_oceania]])
 
 #mostrando o gráfico
-show(grafico_africa)
+show(together)
