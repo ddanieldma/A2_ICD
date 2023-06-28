@@ -16,7 +16,7 @@ df_causas_de_morte["Total Deaths"] = df_causas_de_morte.iloc[:, df_causas_de_mor
 df_causas_de_morte["Deaths per 100k"]= df_causas_de_morte["Total Deaths"]*10**5/df_causas_de_morte["Population"]
 
 # Filtrando os dados para os dados que iremos analisar
-df_causas_de_morte_Brasil = df_causas_de_morte[(df_causas_de_morte["Country Code"] == "BRA")]
+df_causas_de_morte_Brasil = df_causas_de_morte[(df_causas_de_morte["Country Code"] == "BRA")].reset_index()
 
 # print(df_causas_de_morte_Brasil)
 
