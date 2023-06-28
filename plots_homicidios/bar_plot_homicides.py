@@ -32,6 +32,7 @@ plot_interpersonal_violence.yaxis.minor_tick_out = 0
 plot_interpersonal_violence.xgrid.grid_line_color = "#666666"
 plot_interpersonal_violence.ygrid.grid_line_color = "#666666"
 
+# Colocando rótulos do eixo x na diagonal
 plot_interpersonal_violence.xaxis.major_label_orientation = 0.785
 
 #=================================
@@ -60,6 +61,7 @@ plot_conflict_terrorism.yaxis.minor_tick_out = 0
 plot_conflict_terrorism.xgrid.grid_line_color = "#666666"
 plot_conflict_terrorism.ygrid.grid_line_color = "#666666"
 
+# Colocando rótulos do eixo x na diagonal
 plot_conflict_terrorism.xaxis.major_label_orientation = 0.785
 
 #================================================================================================
@@ -93,6 +95,7 @@ plot_interpersonal_violence_proportion.ygrid.grid_line_color = "#666666"
 
 # Rótulo dos eixos
 plot_interpersonal_violence_proportion.yaxis.major_label_text_font_size = "0pt"
+# Colocando rótulos do eixo x na diagonal
 plot_interpersonal_violence_proportion.xaxis.major_label_orientation = 0.785
 
 #=================================
@@ -125,6 +128,7 @@ plot_conflict_terrorism_proportion.ygrid.grid_line_color = "#666666"
 
 # Rótulo dos eixos
 plot_conflict_terrorism_proportion.yaxis.major_label_text_font_size = "0pt"
+# Colocando rótulos do eixo x na diagonal
 plot_conflict_terrorism_proportion.xaxis.major_label_orientation = 0.785
 
 #================================================================================================
