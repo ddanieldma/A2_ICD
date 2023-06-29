@@ -55,4 +55,14 @@ heatmap.add_tools(interativo)
 heatmap.width = 900
 heatmap.height = 400
 
+# adicionando propriedades no grid
+heatmap.grid.grid_line_color = None
+
+# Adicionando propriedades aos eixos
+heatmap.axis.axis_line_color = None
+heatmap.axis.major_tick_line_color = None
+heatmap.axis.major_label_text_font_size = "10px"
+heatmap.axis.major_label_standoff = 0
+heatmap.xaxis.major_label_orientation = pi / 3
+
 show (heatmap)
