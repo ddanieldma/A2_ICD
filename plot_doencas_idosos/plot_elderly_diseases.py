@@ -5,7 +5,7 @@ from bokeh.models import NumeralTickFormatter
 from organizing_data_elderly_diseases import causes, data_deaths_elderly_through_years
 
 import os
-os.chdir("plot_ranking_doencas")
+os.chdir("plot_doencas_idosos")
 
 # mortes causadas por doenças que afetam principalmente a população idosa (doenças cardiovasculares não inclusas)
 output_file("deaths_from_old_people_diseases.html")
@@ -15,7 +15,7 @@ number_of_causes = len(causes)
 plot_elderly_diseases = figure()
 
 # título e dimensões do gráfico
-plot_elderly_diseases.title = "Mortes por doenças que mais afetam idosos ao longo dos anos entre 1990 e 2019 excluindo-se doenças cardiovasculares \n (números em milhões de mortes)"
+plot_elderly_diseases.title = "Mortes por doenças que mais afetam idosos ao longo dos anos entre 1990 e 2019 excluindo-se doenças cardiovasculares em todo o mundo\n (números em milhões de mortes)"
 # largura responsiva
 plot_elderly_diseases.sizing_mode = "stretch_width"
 plot_elderly_diseases.min_width = 720

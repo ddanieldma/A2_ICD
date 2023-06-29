@@ -12,9 +12,9 @@ output_file("deaths_by_homicides.html")
 plot_interpersonal_violence = figure(x_range = df_homicides_by_continent["Continente"].values)
 
 # Título e dimensões do gráfico
-plot_interpersonal_violence.title = "Mortes por violencia interpessoal por continente"
-plot_interpersonal_violence.width = 400
-plot_interpersonal_violence.height = 400
+plot_interpersonal_violence.title = "Mortes por violencia interpessoal por continente \n entre os anos de 1990 e 2019"
+plot_interpersonal_violence.width = 500
+plot_interpersonal_violence.height = 500
 
 plot_interpersonal_violence.vbar(x = "Continente", top = "Inverted Interpersonal Violence", fill_color = "Red", width = 0.85, source = data_homicides_by_continent, line_color = None)
 plot_interpersonal_violence.yaxis.formatter = NumeralTickFormatter(format = '0.0a')
@@ -41,9 +41,9 @@ plot_interpersonal_violence.xaxis.major_label_orientation = 0.785
 plot_conflict_terrorism = figure(x_range = df_homicides_by_continent["Continente"].values)
 
 # Título e dimensões do gráfico
-plot_conflict_terrorism.title = "Mortes por conflitos e terrorismo por continente"
-plot_conflict_terrorism.width = 400
-plot_conflict_terrorism.height = 400
+plot_conflict_terrorism.title = "Mortes por conflitos e terrorismo por continente \n entre os anos de 1990 e 2019"
+plot_conflict_terrorism.width = 500
+plot_conflict_terrorism.height = 500
 
 plot_conflict_terrorism.vbar(x = "Continente", top = "Inverted Conflict and Terrorism", fill_color = "Red", width = 0.85, source = data_homicides_by_continent, line_color = None)
 plot_conflict_terrorism.yaxis.formatter = NumeralTickFormatter(format = '0.0a')
@@ -72,9 +72,9 @@ plot_conflict_terrorism.xaxis.major_label_orientation = 0.785
 plot_interpersonal_violence_proportion = figure(x_range = df_homicides_by_continent["Continente"].values)
 
 # Título e dimensões do gráfico
-plot_interpersonal_violence_proportion.title = "Mortes por violencia interpessoal por continente \n em relação à população total"
-plot_interpersonal_violence_proportion.width = 400
-plot_interpersonal_violence_proportion.height = 400
+plot_interpersonal_violence_proportion.title = "Mortes por violencia interpessoal por continente em relação \n à população total entre os anos de 1990 a 2019"
+plot_interpersonal_violence_proportion.width = 500
+plot_interpersonal_violence_proportion.height = 500
 
 plot_interpersonal_violence_proportion.vbar(x = "Continente", top = "Inverted Violence Proportion", fill_color = "Red", width = 0.85, source = data_homicides_by_continent_proportion, line_color = None)
 plot_interpersonal_violence_proportion.yaxis.formatter = NumeralTickFormatter(format = '0.0a')
@@ -104,9 +104,9 @@ plot_interpersonal_violence_proportion.xaxis.major_label_orientation = 0.785
 plot_conflict_terrorism_proportion = figure(x_range = df_homicides_by_continent["Continente"].values)
 
 # Título e dimensões do gráfico
-plot_conflict_terrorism_proportion.title = "Mortes por conflitos e terrorismo por continente \n em relação à população total"
-plot_conflict_terrorism_proportion.width = 400
-plot_conflict_terrorism_proportion.height = 400
+plot_conflict_terrorism_proportion.title = "Mortes por conflitos e terrorismo por continente em relação \n à população total entre os anos de 1990 e 2019"
+plot_conflict_terrorism_proportion.width = 500
+plot_conflict_terrorism_proportion.height = 500
 
 plot_conflict_terrorism_proportion.vbar(x = "Continente", top = "Inverted Conflict Proportion", fill_color = "Red", width = 0.85, source = data_homicides_by_continent_proportion, line_color = None)
 plot_conflict_terrorism_proportion.yaxis.formatter = NumeralTickFormatter(format = '0.0a')
