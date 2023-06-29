@@ -14,9 +14,27 @@ df_non_diseases = df.groupby('Year')['Soma'].sum().reset_index()
 
 cds = ColumnDataSource(df_non_diseases)
 
-fig = figure()
+fig = figure(width = 1280, height = 720)
 
 fig.line(x="Year", y="Soma", source=cds, line_color = '#399e1f')
+
+fig.title.text = "Total de Mortes por Lesões (histórico)"
+fig.title.text_color = "#4f7227"
+fig.title.text_font = "Times"
+fig.title.text_font_size = "26px"
+fig.title.align = "center"
+
+fig.xaxis.axis_label = "Ano"
+fig.xaxis.major_label_text_font_size = "16px"
+
+fig.yaxis.axis_label = "Número de Mortes"
+fig.yaxis.major_label_text_font_size = "16px"
+
+
+fig.axis.axis_label_text_color = '#4f7227'
+
+fig.axis.axis_label_text_font_size = "24px"
+
 
 #4f7227
 
