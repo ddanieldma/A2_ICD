@@ -48,7 +48,7 @@ heatmap =  figure(x_range = years, y_range  = diseases, tools = TOOLS)
 heatmap.title = f"Top 10 doenças que mais mataram no Brasil({years[0]}-{years[-1]})"
 
 # definindo interatividade 
-interativo = HoverTool(tooltips=[("ano", "@Year"), ("Doença", "@Disease_Name"), ("Número de casos", "@casos")])
+interativo = HoverTool(tooltips=[("Ano", "@Year"), ("Doença", "@Disease_Name"), ("Número de casos", "@casos")])
 heatmap.add_tools(interativo)
 
 # Definindo o tamanho do heatmap
@@ -65,4 +65,19 @@ heatmap.axis.major_label_text_font_size = "10px"
 heatmap.axis.major_label_standoff = 0
 heatmap.xaxis.major_label_orientation = pi / 3
 
+# Adicionando uma escala de cores que será posteriormente usada para o heatmap
+color_chart = linear_cmap("casos", colors, low = df_heatmap.casos.min(), high=df_heatmap.casos.max())
+
+# Adicionando os retângulos do heatmap
+tiles = heatmap.rect(x = "Year", y = "Disease_Name",  width = 1, height=1, fill_color = color_chart, line_color = None ,source = source)
+
+# Adicionando um grid com barra de cores
+heatmap.add_layout(tiles.construct_color_bar(
+    major_label_text_font_size="12px",
+    ticker=BasicTicker(desired_num_ticks=len(colors)),
+    formatter=PrintfTickFormatter(format="%0.1e"),
+    label_standoff=7,
+    border_line_color=None,
+    padding=5,
+), 'right')
 show (heatmap)
