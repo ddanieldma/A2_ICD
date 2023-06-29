@@ -6,7 +6,7 @@ from bokeh.plotting import figure, show
 from bokeh.io import output_file, save, show
 from bokeh.layouts import gridplot
 from bokeh.models.annotations import Span, BoxAnnotation
-from bokeh.models import ColumnDataSource, FactorRange, BasicTicker, PrintfTickFormatter
+from bokeh.models import ColumnDataSource, FactorRange, BasicTicker, PrintfTickFormatter, HoverTool
 from bokeh.transform import linear_cmap
 from math import pi
 
@@ -17,6 +17,10 @@ df_causas_de_morte_Brasil = df_causas_de_morte_Brasil.drop(columns=["index", "Co
 df_causas_de_morte_Brasil["Year"]= df_causas_de_morte_Brasil["Year"].astype(str)
 # Colocando o ano como index
 df_causas_de_morte_Brasil = df_causas_de_morte_Brasil.set_index("Year")
+# Selecionando apenas as 10 doenças com mais casos
+top_10_colunas = df_causas_de_morte_Brasil.sum().nlargest(10)
+nomes_das_colunas = top_10_colunas.index.to_list()
+df_causas_de_morte_Brasil = df_causas_de_morte_Brasil[nomes_das_colunas]
 
 # Guardando algumas informaçãoes que usaremos mais tarde
 years = list(df_causas_de_morte_Brasil.index)
@@ -27,10 +31,28 @@ df_heatmap = pd.DataFrame(df_causas_de_morte_Brasil.stack(), columns=["casos"])
 df_heatmap.reset_index(inplace=True)
 
 # Substituindo o nome da coluna
-df_heatmap= df_heatmap.rename(columns={"level_1": "Disease Name"})
+df_heatmap= df_heatmap.rename(columns={"level_1": "Disease_Name"})
 
 # Colocando o dataframe como um columndatasource
 source = ColumnDataSource(df_heatmap)
 
-print(df_heatmap)
+# Definindo as cores do heatmap
+colors = ["#75968f", "#a5bab7", "#c9d9d3", "#e2e2e2", "#dfccce", "#ddb7b1", "#cc7878", "#933b41", "#550b1d"]
+# Definindo as tools que usaremos
+TOOLS = "hover,save,pan,box_zoom,reset,wheel_zoom"
 
+# Criando nossa figure
+heatmap =  figure(x_range = years, y_range  = diseases, tools = TOOLS)
+
+# Definindo as Propiedadades do título
+heatmap.title = f"Top 10 doenças que mais mataram no Brasil({years[0]}-{years[-1]})"
+
+# definindo interatividade 
+interativo = HoverTool(tooltips=[("ano", "@Year"), ("Doença", "@Disease_Name"), ("Número de casos", "@casos")])
+heatmap.add_tools(interativo)
+
+# Definindo o tamanho do heatmap
+heatmap.width = 900
+heatmap.height = 400
+
+show (heatmap)
