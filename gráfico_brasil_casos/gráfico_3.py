@@ -13,6 +13,10 @@ from math import pi
 # Definindo os anos como string para poder plotar os gráficos
 df_causas_de_morte_Brasil["Year"]=df_causas_de_morte_Brasil["Year"].astype(str)
 
+df_causas_de_morte_Brasil["Percentual change in the population"]= df_causas_de_morte_Brasil["Population"].pct_change()*100
+df_causas_de_morte_Brasil["Percentual change in the deaths"] = df_causas_de_morte_Brasil["Total Deaths"].pct_change()*100
+print(df_causas_de_morte_Brasil)
+
 # Transformando o nosso datafram em ColumnDataSource
 source = ColumnDataSource(df_causas_de_morte_Brasil)
 
@@ -32,5 +36,11 @@ grafico_anos_pop = figure(x_range = df_causas_de_morte_Brasil["Year"])
 
 grafico_anos_pop.line(x="Year", y = "Population", source = source)
 
-combinados = gridplot([[grafico_anos_mortes_100k, grafico_anos_mortes, grafico_anos_pop]])
+# Gráfico percentual change
+grafico_percentual = figure(x_range = df_causas_de_morte_Brasil["Year"])
+
+grafico_percentual.line(x = "Year", y= "Percentual change in the population", source = source)
+grafico_percentual.line(x = "Year", y= "Percentual change in the deaths", source = source)
+
+combinados = gridplot([[grafico_anos_mortes, grafico_anos_pop],[grafico_anos_mortes_100k],[grafico_percentual]])
 show(combinados)
