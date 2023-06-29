@@ -28,10 +28,10 @@ data_homicides_by_continent = ColumnDataSource(df_homicides_by_continent)
 #================================================================================================
 # mesmos dados mas agora com o número de mortes em relação à população do respectivo continente
 
-df_homicides_by_continent_proportion = df_cause_of_death.groupby("Continente")[["Interpersonal Violence", "Conflict and Terrorism", "população"]].sum().sort_values(by = "população").reset_index()
+df_homicides_by_continent_proportion = df_cause_of_death.groupby("Continente")[["Interpersonal Violence", "Conflict and Terrorism", "Population"]].sum().sort_values(by = "Population").reset_index()
 
-df_homicides_by_continent_proportion["Proportion Violence"] = (df_homicides_by_continent_proportion["Interpersonal Violence"] / df_homicides_by_continent_proportion["população"])
-df_homicides_by_continent_proportion["Proportion Conflict"] = (df_homicides_by_continent_proportion["Conflict and Terrorism"] / df_homicides_by_continent_proportion["população"])
+df_homicides_by_continent_proportion["Proportion Violence"] = (df_homicides_by_continent_proportion["Interpersonal Violence"] / df_homicides_by_continent_proportion["Population"])
+df_homicides_by_continent_proportion["Proportion Conflict"] = (df_homicides_by_continent_proportion["Conflict and Terrorism"] / df_homicides_by_continent_proportion["Population"])
 
 # colocando novamente valores negativos
 df_homicides_by_continent_proportion["Inverted Violence Proportion"] = df_homicides_by_continent_proportion["Proportion Violence"] * -1
