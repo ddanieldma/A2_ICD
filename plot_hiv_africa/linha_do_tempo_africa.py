@@ -5,16 +5,22 @@ from bokeh.models import ColumnDataSource
 from bokeh.transform import factor_cmap
 
 def plot_3():
+
+    #Leitura do csv
     df = pd.read_csv("../new_cause_of_death.csv")
 
+    #Filtragem apenas por países africanos + soma das mortes por HIV/AIDS em cada ano
     df_africa_hiv = df[df['Continente'] == "Africa"].groupby('Year')['HIV/AIDS'].sum().reset_index()
 
+    #Criação do ColumnDataSource
     cds = ColumnDataSource(df_africa_hiv)
 
     fig = figure()
 
+    #Atribuição do tipo de plot
     fig.line(x="Year", y="HIV/AIDS", source=cds, line_color = '#8b0000')
-
+    
+    #Customização do plot
     fig.title.text = "Número de Mortes por Aids/HIV na África (Linha do Tempo)"
     fig.title.text_color = "#bc634f"
     fig.title.text_font = "Times"

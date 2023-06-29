@@ -6,10 +6,14 @@ from bokeh.transform import factor_cmap
 
 
 def plot_2():
+    
+    #Leitura do csv
     df = pd.read_csv("../new_cause_of_death.csv")
 
+    #FIltragem por continente + soma dos registros de mortes por HIV/AIDS de cada um
     df_cont_hiv = df.groupby('Continente')['HIV/AIDS'].sum().reset_index()
 
+    #Determinação das cores a serem utilizadas no plot
     cores = ['#8b0000', '#bc634f']
 
     #Obtendo numero de mortes em decorrência do HIV na África
@@ -20,15 +24,18 @@ def plot_2():
     df_cont_hiv.loc[df_cont_hiv['Continente'] != "Africa", 'HIV/AIDS'].sum()
     #O resultado obtido foi 7257465
 
+    #Criação dos eixos do plot (o eixo y são os valores obtidos acima)
     eixo_x = ['Africa', "Restante do Mundo"]
     eixo_y = [29106954, 7257465]
 
     fig = figure(x_range=eixo_x)
 
-    fig.vbar(x=eixo_x, top=[29106954, 7257465], width=0.5,
+    #Atribuição do tipo de plot com os eixos e cores 
+    fig.vbar(x=eixo_x, top=eixo_y, width=0.5,
             fill_color=cores,
             line_color = None)
-
+    
+    #Customização do plot
     fig.title.text = "Comparação África x Restante do Mundo (1990-2019)"
     fig.title.text_color = "#bc634f"
     fig.title.text_font = "Times"
