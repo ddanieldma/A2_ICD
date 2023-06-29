@@ -7,7 +7,8 @@ from bokeh.plotting import figure
 from bokeh.io import output_file, save, show
 from bokeh.layouts import gridplot
 from bokeh.models.annotations import Span, BoxAnnotation
-from bokeh.models import ColumnDataSource, FactorRange
+from bokeh.models import ColumnDataSource, FactorRange, HoverTool
+from bokeh.palettes import brewer
 
 # Estou tentando responder a pergunta: Do que as pessoas mais morrem em cada continente?
 
@@ -25,24 +26,43 @@ top_3_values_per_continent = tabela_long_format.groupby("Continente")["Number of
 top_3_values_per_continent = top_3_values_per_continent.to_frame()
 # Tirando o index como algo de multicategoria
 top_3_values_per_continent = top_3_values_per_continent.reset_index()
-
+# Colocando na ordem para mostrar do maior para o menor
 top_3_values_per_continent = top_3_values_per_continent.sort_values("Number of cases", ascending= False)
-# # Tranformando em escala logarítimica
-# top_3_values_per_continent["Number of cases"] = log10(top_3_values_per_continent["Number of cases"])
+
+# Dicionário com cores
+diseases = top_3_values_per_continent["Name of the disease"].unique()
+color = brewer["Greys"][7]
+dicionario_cores = dict(zip(diseases,color))
 
 # Colocando os dados como uma tupla para realizar um nested bar column
 continentes_disease = tuple(zip(top_3_values_per_continent["Continente"], top_3_values_per_continent["Name of the disease"]))
 
 #Colocando os dados como um columndatasource
 source = ColumnDataSource(data=dict(agrupado=continentes_disease, numero_de_casos = top_3_values_per_continent["Number of cases"]))
+desgrupando = source.data["agrupado"]
+continente_column, doenca_column = zip(*desgrupando)
+source.data["Continente"]= list(continente_column)
+source.data["Doenca"] = list(doenca_column)
+
+# Adicionando uma coluna com a cor
+cor_column = []
+for doenca in source.data["Doenca"]:
+    cor = dicionario_cores.get(doenca)
+    cor_column.append(cor)
+source.data["Cor"] = cor_column
+
+# Adicionando uma lisa única com os continentes
 continentes = []
 for continente in continentes_disease:
     if continente not in continentes:
         continentes.append(continente)
 
-
+# Plotando o gráfico
 grafico_juntos = figure(x_range = FactorRange(*continentes))
-grafico_juntos.vbar(x = "agrupado" , top = "numero_de_casos", width = 0.8, source=source)
+grafico_juntos.vbar(x = "agrupado" , top = "numero_de_casos",color = "Cor", width = 0.8, source=source)
+
+interativo = HoverTool(tooltips = [("Continent, Name of the Disease", "@agrupado"), ("Número de casos", "@numero_de_casos")])
+grafico_juntos.add_tools(interativo)
 
 grafico_juntos.width = 1500
 grafico_juntos.height = 720

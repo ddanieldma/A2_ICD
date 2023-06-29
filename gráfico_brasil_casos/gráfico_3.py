@@ -15,7 +15,9 @@ df_causas_de_morte_Brasil["Year"]=df_causas_de_morte_Brasil["Year"].astype(str)
 
 df_causas_de_morte_Brasil["Percentual change in the population"]= df_causas_de_morte_Brasil["Population"].pct_change()*100
 df_causas_de_morte_Brasil["Percentual change in the deaths"] = df_causas_de_morte_Brasil["Total Deaths"].pct_change()*100
-print(df_causas_de_morte_Brasil)
+df_causas_de_morte_Brasil["Percental change in the 100k deaths"] = df_causas_de_morte_Brasil["Deaths per 100k"].pct_change()*100
+df_causas_de_morte_Brasil["pct_pop - pct_death"]= df_causas_de_morte_Brasil["Percentual change in the population"]-df_causas_de_morte_Brasil["Percentual change in the deaths"]
+df_causas_de_morte_Brasil = df_causas_de_morte_Brasil.dropna()
 
 # Transformando o nosso datafram em ColumnDataSource
 source = ColumnDataSource(df_causas_de_morte_Brasil)
@@ -39,8 +41,9 @@ grafico_anos_pop.line(x="Year", y = "Population", source = source)
 # Gráfico percentual change
 grafico_percentual = figure(x_range = df_causas_de_morte_Brasil["Year"])
 
-grafico_percentual.line(x = "Year", y= "Percentual change in the population", source = source)
-grafico_percentual.line(x = "Year", y= "Percentual change in the deaths", source = source)
+grafico_percentual.vbar(x= "Year", top = "pct_pop - pct_death", width = 0.8 , fill_alpha = 0.2 ,source = source)
+grafico_percentual.line(x = "Year", y= "Percentual change in the population", line_color = "red", source = source)
+grafico_percentual.line(x = "Year", y= "Percentual change in the deaths", line_color = "purple", source = source)
 
 combinados = gridplot([[grafico_anos_mortes, grafico_anos_pop],[grafico_anos_mortes_100k],[grafico_percentual]])
 show(combinados)
