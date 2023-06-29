@@ -49,21 +49,21 @@ for nome in juntando_os_dados.columns:
 #     print(paises)
 #     print()
 
-# # criando o gráfico
-# grafico_1 = figure()
-# grafico_2 = figure()
-# grafico_3 = figure()
-# gráfico_4 = figure()
+# criando o gráfico
+grafico_1 = figure()
+grafico_2 = figure()
+grafico_3 = figure()
+gráfico_4 = figure()
 
-# # adicionando o glifo a eles
-# grafico_1.circle(x1,y1)
-# grafico_2.line(x2,y2)
-# grafico_3.line(x3,y3)
+# adicionando o glifo a eles
+grafico_1.circle(x1,y1)
+grafico_2.line(x2,y2)
+grafico_3.line(x3,y3)
 
-# # plotando o grid
-# grafico_teste = gridplot([[grafico_1], [grafico_2], [grafico_3]])
+# plotando o grid
+grafico_teste = gridplot([[grafico_1], [grafico_2], [grafico_3]])
 
-# # abrindo o html com o gráfico
+# abrindo o html com o gráfico
 # show(grafico_teste)
 
 """
