@@ -51,6 +51,8 @@ coordenada_y_2 = 41070000
 disease_fig.circle(coordenada_x_1, coordenada_y_1, size=50, color="blue", alpha=0.2)
 disease_fig.circle(coordenada_x_2, coordenada_y_2, size=50, color="red", alpha=0.2)
 
+disease_fig.toolbar.autohide = True
+disease_fig.toolbar.logo = None
 
 show(disease_fig)
 

@@ -51,5 +51,8 @@ non_disease_fig.outline_line_color = "black"
 non_disease_fig.xgrid.grid_line_color = None
 non_disease_fig.ygrid.grid_line_color = None
 
+non_disease_fig.toolbar.autohide = True
+non_disease_fig.toolbar.logo = None
+
 show(non_disease_fig)
 

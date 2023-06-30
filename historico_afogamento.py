@@ -47,5 +47,7 @@ drowning_fig.outline_line_color = "black"
 drowning_fig.xgrid.grid_line_color = None
 drowning_fig.ygrid.grid_line_color = None
 
+drowning_fig.toolbar.autohide = True
+drowning_fig.toolbar.logo = None
 
 show(drowning_fig)
