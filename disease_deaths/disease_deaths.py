@@ -36,7 +36,7 @@ fig.add_tools(hover)
 #Customização do plot
 fig.title.text = "Total de Mortes por Doenças (histórico)"
 fig.title.text_color = "#4f7227"
-fig.title.text_font = "Times"
+fig.title.text_font = "Arial"
 fig.title.text_font_size = "26px"
 fig.title.align = "center"
 

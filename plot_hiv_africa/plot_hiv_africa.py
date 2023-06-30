@@ -41,7 +41,7 @@ def plot_1():
     #Customização do plot
     fig.title.text = "Mortes em Decorrência de Aids/HIV por Continente (1990-2019)"
     fig.title.text_color = "#bc634f"
-    fig.title.text_font = "Times"
+    fig.title.text_font = "Arial"
     fig.title.text_font_size = "18px"
     fig.title.align = "center"
 

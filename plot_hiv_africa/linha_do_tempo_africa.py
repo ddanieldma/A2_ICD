@@ -28,7 +28,7 @@ def plot_3():
     #Customização do plot
     fig.title.text = "Número de Mortes por Aids/HIV na África (Linha do Tempo)"
     fig.title.text_color = "#bc634f"
-    fig.title.text_font = "Times"
+    fig.title.text_font = "Arial"
     fig.title.text_font_size = "18px"
     fig.title.align = "center"
 

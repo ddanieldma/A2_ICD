@@ -32,7 +32,6 @@ def plot_2():
     source = ColumnDataSource(data=dict(x=eixo_x, y=eixo_y))
 
     hover = HoverTool(tooltips=[("Mortes:", "@top")], mode='vline')
-
     fig.add_tools(hover)
 
     #Atribuição do tipo de plot com os eixos e cores desejados
@@ -43,7 +42,7 @@ def plot_2():
     #Customização do plot
     fig.title.text = "Comparação África x Restante do Mundo (1990-2019)"
     fig.title.text_color = "#bc634f"
-    fig.title.text_font = "Times"
+    fig.title.text_font = "Arial"
     fig.title.text_font_size = "18px"
     fig.title.align = "center"
 

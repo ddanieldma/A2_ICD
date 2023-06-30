@@ -23,13 +23,14 @@ figure = figure(width = 1280, height = 720)
 # atribuí o y1 ao valor desejado e o y2 a 0, logo, todo esse espaço seria preenchido.)
 figure.varea(x = 'Year', y1 = 'Drowning', y2 = 0,source = cds)
 
+#Adicionando o hovertool para a vizualização do ano e do número de mortes
 hover = HoverTool(tooltips=[("Ano: ", "@Year"), ("Mortes:", "@Drowning")])
 figure.add_tools(hover)
 
 #Customização do plot
 figure.title.text = "Número de Afogamentos por Ano (Mundo)"
 figure.title.text_color = "DarkBlue"
-figure.title.text_font = "Times"
+figure.title.text_font = "Arial"
 figure.title.text_font_size = "26px"
 figure.title.align = "center"
 

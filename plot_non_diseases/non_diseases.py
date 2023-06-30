@@ -26,14 +26,14 @@ fig = figure(width = 1280, height = 720)
 #Atribuição do tipo de plot 
 fig.line(x="Year", y="Soma", source=cds, line_color = '#399e1f')
 
-#Adicionando o hovertool para a vizualização do ano
+#Adicionando o hovertool para a vizualização do ano e da quantidade de mortes
 hover = HoverTool(tooltips=[("Mortes:", "$y{0,0}"),("Ano: ", "@Year")])
 fig.add_tools(hover)
 
 #Customização do plot
 fig.title.text = "Total de Mortes por Lesões (histórico)"
 fig.title.text_color = "#4f7227"
-fig.title.text_font = "Times"
+fig.title.text_font = "Arial"
 fig.title.text_font_size = "26px"
 fig.title.align = "center"
 

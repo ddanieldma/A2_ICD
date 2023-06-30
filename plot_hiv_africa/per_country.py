@@ -28,7 +28,7 @@ def plot_4():
     #Customização do plot
     fig.title.text = "Top 10 Países com mais Mortes por 100 mil Habitantes (histórico)"
     fig.title.text_color = "#bc634f"
-    fig.title.text_font = "Times"
+    fig.title.text_font = "Arial"
     fig.title.text_font_size = "18px"
     fig.title.align = "center"
 
