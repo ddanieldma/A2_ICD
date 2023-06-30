@@ -3,7 +3,7 @@ from bokeh.plotting import figure, show
 from bokeh.io import output_file, save, show
 from bokeh.layouts import gridplot
 from bokeh.models.annotations import Span, BoxAnnotation
-from bokeh.models import ColumnDataSource, FactorRange, BasicTicker, PrintfTickFormatter, HoverTool
+from bokeh.models import ColumnDataSource, FactorRange, BasicTicker, PrintfTickFormatter, HoverTool, NumeralTickFormatter
 from bokeh.transform import linear_cmap
 from math import pi
 from gráfico_3 import df_causas_de_morte_Brasil

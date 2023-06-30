@@ -6,16 +6,16 @@ from bokeh.plotting import figure, show
 from bokeh.io import output_file, save, show
 from bokeh.layouts import gridplot
 from bokeh.models.annotations import Span, BoxAnnotation
-from bokeh.models import ColumnDataSource, FactorRange, BasicTicker, PrintfTickFormatter, HoverTool, LinearColorMapper
+from bokeh.models import ColumnDataSource, FactorRange, BasicTicker, PrintfTickFormatter, HoverTool, LinearColorMapper, NumeralTickFormatter
 from bokeh.transform import linear_cmap
 from math import pi
 
 # Definindo os anos como string para poder plotar os gráficos
 df_causas_de_morte_Brasil["Year"]=df_causas_de_morte_Brasil["Year"].astype(str)
 
-df_causas_de_morte_Brasil["Percentual change in the population"]= df_causas_de_morte_Brasil["Population"].pct_change()*100
-df_causas_de_morte_Brasil["Percentual change in the deaths"] = df_causas_de_morte_Brasil["Total Deaths"].pct_change()*100
-df_causas_de_morte_Brasil["Percental change in the 100k deaths"] = df_causas_de_morte_Brasil["Deaths per 100k"].pct_change()*100
+df_causas_de_morte_Brasil["Percentual change in the population"]= df_causas_de_morte_Brasil["Population"].pct_change()
+df_causas_de_morte_Brasil["Percentual change in the deaths"] = df_causas_de_morte_Brasil["Total Deaths"].pct_change()
+df_causas_de_morte_Brasil["Percental change in the 100k deaths"] = df_causas_de_morte_Brasil["Deaths per 100k"].pct_change()
 df_causas_de_morte_Brasil["pct_pop - pct_death"]= df_causas_de_morte_Brasil["Percentual change in the population"]-df_causas_de_morte_Brasil["Percentual change in the deaths"]
 df_causas_de_morte_Brasil = df_causas_de_morte_Brasil.dropna()
 
@@ -61,7 +61,7 @@ grafico_anos_mortes_100k.xaxis.major_label_orientation = pi/3
 grafico_anos_mortes_100k.xaxis.major_label_text_font_size = "9pt"
 
 grafico_anos_mortes_100k.yaxis.axis_label = "Quantidade de mortes a cada 100 mil habitantes"
-grafico_anos_mortes_100k.yaxis.major_label_orientation = "vertical"
+grafico_anos_mortes_100k.yaxis.major_label_orientation = "horizontal"
 grafico_anos_mortes_100k.yaxis.minor_tick_line_color = "black"
 grafico_anos_mortes_100k.yaxis.minor_tick_line_color = None
 
@@ -103,8 +103,9 @@ grafico_anos_mortes.xaxis.minor_tick_in = 0
 grafico_anos_mortes.xaxis.major_label_orientation = pi/3
 grafico_anos_mortes.xaxis.major_label_text_font_size = "9pt"
 
+grafico_anos_mortes.yaxis.formatter = NumeralTickFormatter(format="0.0a")
 grafico_anos_mortes.yaxis.axis_label = "Quantidade de mortos"
-grafico_anos_mortes.yaxis.major_label_orientation = "vertical"
+grafico_anos_mortes.yaxis.major_label_orientation = "horizontal"
 grafico_anos_mortes.yaxis.minor_tick_line_color = "black"
 grafico_anos_mortes.yaxis.minor_tick_line_color = None
 
@@ -152,7 +153,8 @@ grafico_anos_pop.xaxis.major_label_orientation = pi/3
 grafico_anos_pop.xaxis.major_label_text_font_size = "9pt"
 
 grafico_anos_pop.yaxis.axis_label = "População Brasileira"
-grafico_anos_pop.yaxis.major_label_orientation = "vertical"
+grafico_anos_pop.yaxis.formatter = NumeralTickFormatter(format="0.0a")
+grafico_anos_pop.yaxis.major_label_orientation = "horizontal"
 grafico_anos_pop.yaxis.minor_tick_line_color = "black"
 grafico_anos_pop.yaxis.minor_tick_line_color = None
 
@@ -202,7 +204,8 @@ grafico_percentual.xaxis.major_label_orientation = pi/3
 grafico_percentual.xaxis.major_label_text_font_size = "9pt"
 
 grafico_percentual.yaxis.axis_label = "Diferença percentual (*100)"
-grafico_percentual.yaxis.major_label_orientation = "vertical"
+grafico_percentual.yaxis.formatter = NumeralTickFormatter(format="0.0%")
+grafico_percentual.yaxis.major_label_orientation = "horizontal"
 grafico_percentual.yaxis.minor_tick_line_color = "black"
 grafico_percentual.yaxis.minor_tick_line_color = None
 
@@ -223,5 +226,5 @@ grafico_percentual.ygrid.grid_line_color = None
 
 #-------------------------------------------------------------------------------------
 
-combinados = gridplot([[grafico_anos_mortes, grafico_anos_pop],[grafico_anos_mortes_100k],[grafico_percentual]])
+combinados = gridplot([[grafico_anos_mortes, grafico_anos_pop],[grafico_anos_mortes_100k, grafico_percentual]])
 show(combinados)
