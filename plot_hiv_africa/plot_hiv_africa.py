@@ -4,6 +4,7 @@ from bokeh.io import output_file, save, show
 from bokeh.models import ColumnDataSource
 from bokeh.transform import factor_cmap
 from bokeh.models import NumeralTickFormatter
+from bokeh.models import HoverTool
 
 def plot_1():
     
@@ -33,6 +34,10 @@ def plot_1():
             fill_color=factor_cmap('Continente', palette = cores, factors=categorias),
             line_color = None)
     
+    #Adicionando o hovertool para a vizualização do continente e da quantidade de mortes
+    hover = HoverTool(tooltips=[("Continente:", "@Continente"),("Mortes: ", "@{HIV/AIDS}{0,0}")])
+    fig.add_tools(hover)
+
     #Customização do plot
     fig.title.text = "Mortes em Decorrência de Aids/HIV por Continente (1990-2019)"
     fig.title.text_color = "#bc634f"

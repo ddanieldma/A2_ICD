@@ -4,6 +4,7 @@ from bokeh.io import output_file, save, show
 from bokeh.models import ColumnDataSource
 from bokeh.transform import factor_cmap
 from bokeh.models import NumeralTickFormatter
+from bokeh.models import HoverTool
 
 def plot_2():
     
@@ -17,18 +18,22 @@ def plot_2():
     cores = ['#8b0000', '#bc634f']
 
     #Obtendo numero de mortes em decorrência do HIV na África
-    df_cont_hiv.loc[df_cont_hiv['Continente'] == "Africa", 'HIV/AIDS']
-    #O resultado obtido foi 29106954
-
+    mortes_africa = df_cont_hiv.loc[df_cont_hiv['Continente'] == "Africa", 'HIV/AIDS']
+   
     #Obtendo numero de mortes em decorrência do HIV no restante do mundo
-    df_cont_hiv.loc[df_cont_hiv['Continente'] != "Africa", 'HIV/AIDS'].sum()
-    #O resultado obtido foi 7257465
+    mortes_resto_mundo = df_cont_hiv.loc[df_cont_hiv['Continente'] != "Africa", 'HIV/AIDS'].sum()
 
     #Criação dos eixos do plot (o eixo y são os valores obtidos acima)
     eixo_x = ['Africa', "Restante do Mundo"]
-    eixo_y = [29106954, 7257465]
+    eixo_y = [mortes_africa, mortes_resto_mundo]
 
     fig = figure(x_range=eixo_x)
+
+    source = ColumnDataSource(data=dict(x=eixo_x, y=eixo_y))
+
+    hover = HoverTool(tooltips=[("Mortes:", "@top")], mode='vline')
+
+    fig.add_tools(hover)
 
     #Atribuição do tipo de plot com os eixos e cores desejados
     fig.vbar(x=eixo_x, top=eixo_y, width=0.5,

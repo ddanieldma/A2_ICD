@@ -4,6 +4,7 @@ from bokeh.io import output_file, save, show
 from bokeh.models import ColumnDataSource
 from bokeh.transform import factor_cmap
 from bokeh.models import NumeralTickFormatter
+from bokeh.models import HoverTool
 
 #Leitura do csv
 df = pd.read_csv("../new_cause_of_death.csv")
@@ -28,6 +29,10 @@ fig = figure(width = 1280, height = 720)
 #Atribuição do tipo de plot 
 fig.line(x="Year", y="Soma_doenças", source=cds, line_color = '#399e1f')
 
+#Adicionando o hovertool para a vizualização do ano e da quantidade de mortes
+hover = HoverTool(tooltips=[("Mortes:", "$y{0,0}"),("Ano: ", "@Year")])
+fig.add_tools(hover)
+
 #Customização do plot
 fig.title.text = "Total de Mortes por Doenças (histórico)"
 fig.title.text_color = "#4f7227"
@@ -40,7 +45,7 @@ fig.xaxis.major_label_text_font_size = "16px"
 
 fig.yaxis.axis_label = "Número de Mortes"
 fig.yaxis.major_label_text_font_size = "16px"
-fig.yaxis[0].formatter = NumeralTickFormatter(format='0a')
+fig.yaxis[0].formatter = NumeralTickFormatter(format='0,0')
 
 fig.axis.axis_label_text_color = '#4f7227'
 

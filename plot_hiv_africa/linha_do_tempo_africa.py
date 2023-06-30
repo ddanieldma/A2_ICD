@@ -4,6 +4,7 @@ from bokeh.io import output_file, save, show
 from bokeh.models import ColumnDataSource
 from bokeh.transform import factor_cmap
 from bokeh.models import NumeralTickFormatter
+from bokeh.models import HoverTool
 
 def plot_3():
 
@@ -21,6 +22,9 @@ def plot_3():
     #Atribuição do tipo de plot
     fig.line(x="Year", y="HIV/AIDS", source=cds, line_color = '#8b0000')
     
+    hover = HoverTool(tooltips=[("Mortes:", "$y{0,0}"), ("Ano:", "@Year")], mode='vline')
+    fig.add_tools(hover)
+
     #Customização do plot
     fig.title.text = "Número de Mortes por Aids/HIV na África (Linha do Tempo)"
     fig.title.text_color = "#bc634f"

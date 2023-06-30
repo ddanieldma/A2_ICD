@@ -3,6 +3,7 @@ from bokeh.plotting import figure
 from bokeh.io import output_file, save, show
 from bokeh.models import ColumnDataSource
 from bokeh.models import NumeralTickFormatter
+from bokeh.models import HoverTool
 
 #Leitura do csv
 df = pd.read_csv("../new_cause_of_death.csv")
@@ -21,6 +22,9 @@ figure = figure(width = 1280, height = 720)
 #Atribuição do tipo de plot (Para que o gráfico abrangesse do valor 0 até a frequência de mortes
 # atribuí o y1 ao valor desejado e o y2 a 0, logo, todo esse espaço seria preenchido.)
 figure.varea(x = 'Year', y1 = 'Drowning', y2 = 0,source = cds)
+
+hover = HoverTool(tooltips=[("Ano: ", "@Year"), ("Mortes:", "@Drowning")])
+figure.add_tools(hover)
 
 #Customização do plot
 figure.title.text = "Número de Afogamentos por Ano (Mundo)"
