@@ -3,9 +3,6 @@ from bokeh.plotting import figure, output_file, show
 from bokeh.layouts import gridplot
 from bokeh.models import NumeralTickFormatter, Span, Label
 
-import os
-os.chdir("plots_homicidios")
-
 def grafico_padrao(figure):
 		# fonte do titulo
 		figure.title.text_font = "arial"
@@ -156,6 +153,3 @@ plot_homicides_continents = gridplot([[plot_interpersonal_violence, plot_conflic
 # Propiedades das ferramentas
 plot_homicides_continents.toolbar.logo = None
 plot_homicides_continents.toolbar.autohide = True
-
-# plotando grid plot
-show(plot_homicides_continents)
