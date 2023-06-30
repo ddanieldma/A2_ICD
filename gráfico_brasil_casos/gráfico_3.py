@@ -196,7 +196,6 @@ grafico_percentual.width = 700
 grafico_percentual.height = 400
 
 #Definindo propriedades do eixo
-
 grafico_percentual.xaxis.axis_label = "Anos"
 grafico_percentual.xaxis.minor_tick_line_color = "black"
 grafico_percentual.xaxis.minor_tick_in = 0

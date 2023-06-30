@@ -3,11 +3,12 @@ sys.path.append('../A2_ICD')
 from analisando_a_base import df_causas_de_morte
 import pandas as pd
 from numpy import log10
+from math import pi
 from bokeh.plotting import figure
 from bokeh.io import output_file, save, show
 from bokeh.layouts import gridplot
 from bokeh.models.annotations import Span, BoxAnnotation
-from bokeh.models import ColumnDataSource, FactorRange, HoverTool
+from bokeh.models import ColumnDataSource, FactorRange, HoverTool, NumeralTickFormatter
 from bokeh.palettes import brewer
 
 # Estou tentando responder a pergunta: Do que as pessoas mais morrem em cada continente?
@@ -61,11 +62,43 @@ for continente in continentes_disease:
 grafico_juntos = figure(x_range = FactorRange(*continentes))
 grafico_juntos.vbar(x = "agrupado" , top = "numero_de_casos",color = "Cor", width = 0.8, source=source)
 
-interativo = HoverTool(tooltips = [("Continent, Name of the Disease", "@agrupado"), ("Número de casos", "@numero_de_casos")])
+# Adicionando propriedades aos títulos do gráfico
+grafico_juntos.title.text = "As três maiores causas de morte por continente"
+grafico_juntos.title.text_color = "Black"
+grafico_juntos.title.text_font = "Arial"
+grafico_juntos.title.text_font_size = "15px"
+grafico_juntos.title.align = "center"
+
+#Definindo propriedades do eixo
+grafico_juntos.xaxis.axis_label = "Continentes"
+grafico_juntos.xaxis.minor_tick_line_color = "black"
+grafico_juntos.xaxis.minor_tick_in = 0
+grafico_juntos.xaxis.major_label_orientation = pi/3
+grafico_juntos.xaxis.major_label_text_font_size = "9pt"
+
+grafico_juntos.yaxis.axis_label = "Quantidade de mortes"
+grafico_juntos.yaxis.formatter = NumeralTickFormatter(format="0.0a")
+grafico_juntos.yaxis.major_label_orientation = "horizontal"
+grafico_juntos.yaxis.minor_tick_line_color = "black"
+grafico_juntos.yaxis.minor_tick_line_color = None
+
+# Definindo a borda
+grafico_juntos.outline_line_color = "black"
+
+
+# Tirando o Grid
+grafico_juntos.xgrid.grid_line_color = None
+grafico_juntos.ygrid.grid_line_color = None
+
+# Adicionando interatividade
+interativo = HoverTool(tooltips = [("Continent", "@Continente"), ("Doença", "@Doenca"),("Número de casos", "@numero_de_casos")])
 grafico_juntos.add_tools(interativo)
 
+# Definindo altura e largura
 grafico_juntos.width = 1500
 grafico_juntos.height = 720
+
+# Definindo propriedades do grid
 grafico_juntos.xaxis.major_label_orientation = 1
 
 # #mostrando o gráfico
