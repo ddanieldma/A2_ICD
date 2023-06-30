@@ -1,3 +1,4 @@
+from ColumnDataSource import cds_afogamento
 import pandas as pd
 from bokeh.plotting import figure
 from bokeh.io import output_file, save, show
@@ -5,23 +6,12 @@ from bokeh.models import ColumnDataSource
 from bokeh.models import NumeralTickFormatter
 from bokeh.models import HoverTool
 
-#Leitura do csv
-df = pd.read_csv("../new_cause_of_death.csv")
-
-#Filtragem por ano com a soma dos valores da coluna ['Drowning']
-df_drowning_sum = df.groupby('Year')['Drowning'].sum().reset_index()
-
-#Criação do ColumnDataSource
-cds = ColumnDataSource(df_drowning_sum)
-
-output_file("line_plot_drowning.html")
-
 #Criação da figure com dimensões especificadas
 drowning_fig = figure(width = 1280, height = 720)
 
 #Atribuição do tipo de plot (Para que o gráfico abrangesse do valor 0 até a frequência de mortes
 # atribuí o y1 ao valor desejado e o y2 a 0, logo, todo esse espaço seria preenchido.)
-drowning_fig.varea(x = 'Year', y1 = 'Drowning', y2 = 0,source = cds)
+drowning_fig.varea(x = 'Year', y1 = 'Drowning', y2 = 0,source = cds_afogamento)
 
 #Adicionando o hovertool para a vizualização do ano e do número de mortes
 hover = HoverTool(tooltips=[("Ano: ", "@Year"), ("Mortes:", "@Drowning")])

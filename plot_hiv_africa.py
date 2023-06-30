@@ -1,3 +1,4 @@
+from ColumnDataSource import cds_comp_continentes, cores_continentes, continentes, df_cont_hiv
 import pandas as pd
 from bokeh.plotting import figure
 from bokeh.io import output_file, save, show
@@ -8,30 +9,13 @@ from bokeh.models import HoverTool
 
 def plot_1():
     
-    #Leitura do csv
-    df = pd.read_csv("../new_cause_of_death.csv")
-
-    #Filtragem por continente + soma dos registros de mortes por HIV/AIDS de cada um
-    df_cont_hiv = df.groupby('Continente')['HIV/AIDS'].sum().reset_index()
-
-    #Obtenção dos 5 continentes (para aplicar a paleta)
-    categorias = df_cont_hiv['Continente'].unique()
-
-    #Criação da paleta
-    cores = ['#8b0000', '#bc634f', '#bc634f', '#bc634f', '#bc634f', '#bc634f']
-    
-    #Criação do ColumnDataSource
-    cds = ColumnDataSource(df_cont_hiv)
-
-    output_file("hiv_continents.html")
-
     grid1_fig = figure(x_range=df_cont_hiv['Continente'])  
     #A inserção do x_range é necessária para a criação dos bar charts
     #Sua função é atribuir as categorias da coluna ao eixo x.
 
     #Atribuição do tipo de plot + aplicação da paleta
-    grid1_fig.vbar(x= 'Continente', top= 'HIV/AIDS', source=cds, width=0.5,
-            fill_color=factor_cmap('Continente', palette = cores, factors=categorias),
+    grid1_fig.vbar(x= 'Continente', top= 'HIV/AIDS', source=cds_comp_continentes, width=0.5,
+            fill_color=factor_cmap('Continente', palette = cores_continentes, factors=continentes),
             line_color = None)
     
     #Adicionando o hovertool para a vizualização do continente e da quantidade de mortes

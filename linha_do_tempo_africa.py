@@ -1,3 +1,4 @@
+from ColumnDataSource import cds_timeline, df_africa_hiv_timeline
 import pandas as pd
 from bokeh.plotting import figure
 from bokeh.io import output_file, save, show
@@ -8,19 +9,10 @@ from bokeh.models import HoverTool
 
 def plot_3():
 
-    #Leitura do csv
-    df = pd.read_csv("../new_cause_of_death.csv")
-
-    #Filtragem apenas por países africanos + soma das mortes por HIV/AIDS em cada ano
-    df_africa_hiv = df[df['Continente'] == "Africa"].groupby('Year')['HIV/AIDS'].sum().reset_index()
-
-    #Criação do ColumnDataSource
-    cds = ColumnDataSource(df_africa_hiv)
-
     grid4_fig = figure()
 
     #Atribuição do tipo de plot
-    grid4_fig.line(x="Year", y="HIV/AIDS", source=cds, line_color = '#8b0000')
+    grid4_fig.line(x="Year", y="HIV/AIDS", source=cds_timeline, line_color = '#8b0000')
     
     hover = HoverTool(tooltips=[("Mortes:", "$y{0,0}"), ("Ano:", "@Year")], mode='vline')
     grid4_fig.add_tools(hover)
