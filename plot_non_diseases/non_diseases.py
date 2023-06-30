@@ -48,6 +48,16 @@ fig.axis.axis_label_text_color = '#4f7227'
 
 fig.axis.axis_label_text_font_size = "24px"
 
+#criação dos círculos
+coordenada_x_1 = 1994
+coordenada_y_1 = 4300000
+
+coordenada_x_2 = 2019
+coordenada_y_2 = 3122070
+
+fig.circle(coordenada_x_1, coordenada_y_1, size=50, color="red", alpha=0.2)
+fig.circle(coordenada_x_2, coordenada_y_2, size=50, color="blue", alpha=0.2)
+
 
 show(fig)
 
