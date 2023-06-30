@@ -1,33 +1,65 @@
 from organizing_data_boxplot import kinds, source_continents_boxplot, outliers
 
-from bokeh.models import ColumnDataSource, Whisker, NumeralTickFormatter
-from bokeh.plotting import show, output_file, figure
+from bokeh.models import ColumnDataSource, Whisker, NumeralTickFormatter, HoverTool
+from bokeh.plotting import show, save, output_file, figure
 from bokeh.transform import factor_cmap
+
+import os
+os.chdir("box_plot")
 
 output_file("boxplot.html")
 
-boxplot = figure(x_range=kinds, title="Distribuição de mortes por doenças cardiovasculares por continente", background_fill_color="#eaefef", y_axis_label="Mortes por acidentes cardiovasculares")
-boxplot.sizing_mode = "stretch_width"
-boxplot.min_width = 720
-boxplot.height = 720
+# ferramenta de interatividade
+hover_tool = HoverTool(
+    tooltips = [
+        ("Pais", "@{Country/Territory}"),
+        ("Mortes", "@{Per 100k}")
+    ]
+)
 
-# outlier range
+# criando boxplot
+boxplot = figure(x_range=kinds)
+
+# adicionando ferramenta de interatividade
+boxplot.add_tools(hover_tool)
+
+# colocando limites superiores e inferiores
 whisker = Whisker(base="kind", upper="upper", lower="lower", source=source_continents_boxplot)
 whisker.upper_head.size = whisker.lower_head.size = 20
 boxplot.add_layout(whisker)
 
 # colorindo barras
 cmap = factor_cmap("kind", "TolRainbow7", kinds)
-# as caixas do boxplot são gráficos de barar
+# as caixas do boxplot são gráficos de barra
 boxplot.vbar("kind", 0.7, "q2", "q3", source=source_continents_boxplot, color=cmap, line_color="black")
 boxplot.vbar("kind", 0.7, "q1", "q2", source=source_continents_boxplot, color=cmap, line_color="black")
 
 # fazendo outliers com scatter plot
-boxplot.scatter("kind", "Cardiovascular Diseases", source=outliers, size=6, color="black", alpha=0.3)
+boxplot.scatter("kind", "Per 100k", source=outliers, size=6, color="black", alpha=0.3)
 
+#===========================================================================
+
+# Personalizando
+
+# dimensões do plot
+boxplot.width = 1000
+boxplot.height = 600
+
+# titulo
+boxplot.title.text = "Distribuição de mortes por doenças cardiovasculares por continente \n por 100 mil habitantes no ano de 2019"
+boxplot.title.text_font = "arial"
+boxplot.title.text_font_size = "22px"
+boxplot.title.align = "center"
+
+# eixos
+boxplot.axis.major_label_text_font_size="16px"
+# eixoy
 boxplot.yaxis.formatter = NumeralTickFormatter(format = '0.0a')
-boxplot.xgrid.grid_line_color = None
-boxplot.axis.major_label_text_font_size="14px"
-boxplot.axis.axis_label_text_font_size="12px"
+boxplot.yaxis.axis_label = "Mortes por acidentes cardiovasculares"
+boxplot.yaxis.axis_label_text_font_size = "20px"
+boxplot.yaxis.axis_label_text_font = "arial"
 
-show(boxplot)
+# retirando grids
+boxplot.grid.grid_line_color = None
+
+save(boxplot)
