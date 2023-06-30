@@ -51,6 +51,12 @@ fig.axis.axis_label_text_color = '#4f7227'
 
 fig.axis.axis_label_text_font_size = "24px"
 
+fig.outline_line_color = "black"
+
+# Tirando o Grid
+fig.xgrid.grid_line_color = None
+fig.ygrid.grid_line_color = None
+
 #criação dos círculos
 coordenada_x_1 = 1990
 coordenada_y_1 = 34017000

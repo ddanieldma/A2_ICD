@@ -27,35 +27,41 @@ def plot_2():
     eixo_x = ['Africa', "Restante do Mundo"]
     eixo_y = [mortes_africa, mortes_resto_mundo]
 
-    fig = figure(x_range=eixo_x)
+    grid2_fig = figure(x_range=eixo_x)
 
     source = ColumnDataSource(data=dict(x=eixo_x, y=eixo_y))
 
     hover = HoverTool(tooltips=[("Mortes:", "@top")], mode='vline')
-    fig.add_tools(hover)
+    grid2_fig.add_tools(hover)
 
     #Atribuição do tipo de plot com os eixos e cores desejados
-    fig.vbar(x=eixo_x, top=eixo_y, width=0.5,
+    grid2_fig.vbar(x=eixo_x, top=eixo_y, width=0.5,
             fill_color=cores,
             line_color = None)
     
     #Customização do plot
-    fig.title.text = "Comparação África x Restante do Mundo (1990-2019)"
-    fig.title.text_color = "#bc634f"
-    fig.title.text_font = "Arial"
-    fig.title.text_font_size = "18px"
-    fig.title.align = "center"
+    grid2_fig.title.text = "Comparação África x Restante do Mundo (1990-2019)"
+    grid2_fig.title.text_color = "#bc634f"
+    grid2_fig.title.text_font = "Arial"
+    grid2_fig.title.text_font_size = "18px"
+    grid2_fig.title.align = "center"
 
-    fig.xaxis.axis_label = ""
-    fig.xaxis.major_label_text_font_size = "14px"
+    grid2_fig.xaxis.axis_label = ""
+    grid2_fig.xaxis.major_label_text_font_size = "14px"
 
-    fig.yaxis.axis_label = "Número de Mortes"
-    fig.yaxis.major_label_text_font_size = "14px"
-    fig.yaxis[0].formatter = NumeralTickFormatter(format='0a')
+    grid2_fig.yaxis.axis_label = "Número de Mortes"
+    grid2_fig.yaxis.major_label_text_font_size = "14px"
+    grid2_fig.yaxis[0].formatter = NumeralTickFormatter(format='0a')
 
-    fig.axis.axis_label_text_color = '#bc634f'
+    grid2_fig.axis.axis_label_text_color = '#bc634f'
 
-    fig.axis.axis_label_text_font_size = "18px"
+    grid2_fig.axis.axis_label_text_font_size = "18px"
 
-    return fig
+    grid2_fig.outline_line_color = "black"
+    
+    # Tirando o Grid
+    grid2_fig.xgrid.grid_line_color = None
+    grid2_fig.ygrid.grid_line_color = None
+
+    return grid2_fig
 

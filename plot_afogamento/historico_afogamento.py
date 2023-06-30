@@ -17,38 +17,45 @@ cds = ColumnDataSource(df_drowning_sum)
 output_file("line_plot_drowning.html")
 
 #Criação da figure com dimensões especificadas
-figure = figure(width = 1280, height = 720)
+drowning_fig = figure(width = 1280, height = 720)
 
 #Atribuição do tipo de plot (Para que o gráfico abrangesse do valor 0 até a frequência de mortes
 # atribuí o y1 ao valor desejado e o y2 a 0, logo, todo esse espaço seria preenchido.)
-figure.varea(x = 'Year', y1 = 'Drowning', y2 = 0,source = cds)
+drowning_fig.varea(x = 'Year', y1 = 'Drowning', y2 = 0,source = cds)
 
 #Adicionando o hovertool para a vizualização do ano e do número de mortes
 hover = HoverTool(tooltips=[("Ano: ", "@Year"), ("Mortes:", "@Drowning")])
-figure.add_tools(hover)
+drowning_fig.add_tools(hover)
 
 #Customização do plot
-figure.title.text = "Número de Afogamentos por Ano (Mundo)"
-figure.title.text_color = "DarkBlue"
-figure.title.text_font = "Arial"
-figure.title.text_font_size = "26px"
-figure.title.align = "center"
+drowning_fig.title.text = "Número de Afogamentos por Ano (Mundo)"
+drowning_fig.title.text_color = "DarkBlue"
+drowning_fig.title.text_font = "Arial"
+drowning_fig.title.text_font_size = "26px"
+drowning_fig.title.align = "center"
 
-figure.xaxis.axis_label = "Ano"
-figure.xaxis.major_label_text_font_size = "16px"
+drowning_fig.xaxis.axis_label = "Ano"
+drowning_fig.xaxis.major_label_text_font_size = "16px"
 
-figure.yaxis.axis_label = "Total de Casos"
-figure.yaxis.major_label_text_font_size = "16px"
-figure.yaxis[0].formatter = NumeralTickFormatter(format='0a')
+drowning_fig.yaxis.axis_label = "Total de Casos"
+drowning_fig.yaxis.major_label_text_font_size = "16px"
+drowning_fig.yaxis[0].formatter = NumeralTickFormatter(format='0a')
 
-figure.axis.axis_label_text_color = "DarkBlue"
+drowning_fig.axis.axis_label_text_color = "DarkBlue"
 
-figure.axis.axis_label_text_font_size = "24px"
+drowning_fig.axis.axis_label_text_font_size = "24px"
 
-figure.xgrid.grid_line_color = "blue"
-figure.xgrid.grid_line_alpha = 0.2
+drowning_fig.xgrid.grid_line_color = "blue"
+drowning_fig.xgrid.grid_line_alpha = 0.2
 
-figure.ygrid.grid_line_color = "blue"
-figure.ygrid.grid_line_alpha = 0.2
+drowning_fig.ygrid.grid_line_color = "blue"
+drowning_fig.ygrid.grid_line_alpha = 0.2
 
-show(figure)
+drowning_fig.outline_line_color = "black"
+
+# Tirando o Grid
+drowning_fig.xgrid.grid_line_color = None
+drowning_fig.ygrid.grid_line_color = None
+
+
+show(drowning_fig)
