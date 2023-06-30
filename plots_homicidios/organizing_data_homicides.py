@@ -1,4 +1,3 @@
-import pandas as pd
 from bokeh.models import ColumnDataSource
 
 # importando dataset
