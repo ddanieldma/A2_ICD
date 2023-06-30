@@ -25,7 +25,7 @@ def verde_ou_vermelho(x):
         return 'green'
     else:
         return 'red'
-df_causas_de_morte_Brasil["Cor"] = df_causas_de_morte_Brasil["pct_pop - pct_death"].apply(verde_ou_vermelho)
+df_causas_de_morte_Brasil.loc[:, 'Cor'] = df_causas_de_morte_Brasil['pct_pop - pct_death'].apply(verde_ou_vermelho)
 
 # Transformando o nosso datafram em ColumnDataSource
 source = ColumnDataSource(df_causas_de_morte_Brasil)
@@ -175,10 +175,12 @@ grafico_anos_pop.ygrid.grid_line_color = None
 # Gráfico percentual change
 grafico_percentual = figure(x_range = df_causas_de_morte_Brasil["Year"])
 
-grafico_percentual.vbar(x= "Year", top = "pct_pop - pct_death", width = 0.8 , color = "Cor", fill_alpha = 0.2, line_alpha = 0.2 ,source = source)
+grafico_percentual.vbar(x= "Year", top = "pct_pop - pct_death", width = 0.8 , color = "Cor", fill_alpha = 0.4, line_alpha = 0.4 ,source = source)
 # grafico_percentual.line(x = "Year", y= "Percentual change in the population", line_color = "red", source = source)
 # grafico_percentual.line(x = "Year", y= "Percentual change in the deaths", line_color = "purple", source = source)
 
+interativo_anos_pop = HoverTool(tooltips=[("Ano", "@Year"), ("Diferença de porcentagens", "@{pct_pop - pct_death}")])
+grafico_percentual.add_tools(interativo_anos_pop)
 
 # Adicionando propriedades aos títulos do gráfico
 grafico_percentual.title.text = "Diferença entre a taxa de crescimento da população e a taxa de crescimento de mortes"
