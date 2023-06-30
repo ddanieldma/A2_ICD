@@ -6,6 +6,7 @@ from bokeh.models import ColumnDataSource
 from bokeh.transform import factor_cmap
 from bokeh.models import NumeralTickFormatter
 from bokeh.models import HoverTool
+from bokeh.models import BoxAnnotation
 
 def plot_3():
 
@@ -43,5 +44,15 @@ def plot_3():
 
     grid4_fig.background_fill_color = "red"
     grid4_fig.background_fill_alpha = 0.1
+
+    #box annotation:
+    x_box = (2002, 2006)
+    y_box = (1400000, 1600000)
+    box_annotation = BoxAnnotation(left=x_box[0], right=x_box[1], bottom=y_box[0], top=y_box[1], fill_color='red', fill_alpha=0.3)
+
+    #add text
+    text_labels = ['Pico de Mortes no Ano de 2004']
+    grid4_fig.text(x=2012, y=1460000, text=text_labels, text_font_size='11pt', text_color='red', text_align='center')
+    grid4_fig.add_layout(box_annotation)
 
     return grid4_fig
