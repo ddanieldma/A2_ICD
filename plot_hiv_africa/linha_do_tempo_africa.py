@@ -3,6 +3,7 @@ from bokeh.plotting import figure
 from bokeh.io import output_file, save, show
 from bokeh.models import ColumnDataSource
 from bokeh.transform import factor_cmap
+from bokeh.models import NumeralTickFormatter
 
 def plot_3():
 
@@ -32,6 +33,7 @@ def plot_3():
 
     fig.yaxis.axis_label = "Número de Mortes"
     fig.yaxis.major_label_text_font_size = "14px"
+    fig.yaxis[0].formatter = NumeralTickFormatter(format='0a')
 
     fig.axis.axis_label_text_color = '#bc634f'
 

@@ -3,14 +3,14 @@ from bokeh.plotting import figure
 from bokeh.io import output_file, save, show
 from bokeh.models import ColumnDataSource
 from bokeh.transform import factor_cmap
-
+from bokeh.models import NumeralTickFormatter
 
 def plot_2():
     
     #Leitura do csv
     df = pd.read_csv("../new_cause_of_death.csv")
 
-    #FIltragem por continente + soma dos registros de mortes por HIV/AIDS de cada um
+    #Filtragem por continente + soma dos registros de mortes por HIV/AIDS de cada um
     df_cont_hiv = df.groupby('Continente')['HIV/AIDS'].sum().reset_index()
 
     #Determinação das cores a serem utilizadas no plot
@@ -30,7 +30,7 @@ def plot_2():
 
     fig = figure(x_range=eixo_x)
 
-    #Atribuição do tipo de plot com os eixos e cores 
+    #Atribuição do tipo de plot com os eixos e cores desejados
     fig.vbar(x=eixo_x, top=eixo_y, width=0.5,
             fill_color=cores,
             line_color = None)
@@ -47,6 +47,7 @@ def plot_2():
 
     fig.yaxis.axis_label = "Número de Mortes"
     fig.yaxis.major_label_text_font_size = "14px"
+    fig.yaxis[0].formatter = NumeralTickFormatter(format='0a')
 
     fig.axis.axis_label_text_color = '#bc634f'
 
