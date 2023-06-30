@@ -43,6 +43,9 @@ def plot_4():
     hover = HoverTool(tooltips=[("País", "@{Country/Territory}")])
     grid3_fig.add_tools(hover)
 
+    grid3_fig.background_fill_color = "red"
+    grid3_fig.background_fill_alpha = 0.1
+
     return grid3_fig
 
 

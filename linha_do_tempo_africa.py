@@ -41,4 +41,7 @@ def plot_3():
     grid4_fig.xgrid.grid_line_color = None
     grid4_fig.ygrid.grid_line_color = None
 
+    grid4_fig.background_fill_color = "red"
+    grid4_fig.background_fill_alpha = 0.1
+
     return grid4_fig

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bokeh Plot</title>
+    <style>
+      html, body {
+        box-sizing: border-box;
+        display: flow-root;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-3.2.0.min.js"></script>
+    <script type="text/javascript">
+        Bokeh.set_log_level("info");
+    </script>
+  </head>
+  <body>
+    <div id="ef39d45f-f524-43ec-8814-3e3aeae6345b" data-root-id="p1022" style="display: contents;"></div>
+  
+    <script type="application/json" id="p1064">
+      {"075a5bce-69ba-49b5-adcb-2b1c8698b4d5":{"version":"3.2.0","title":"Bokeh Application","roots":[{"type":"object","name":"Figure","id":"p1022","attributes":{"width":1280,"height":720,"x_range":{"type":"object","name":"DataRange1d","id":"p1023"},"y_range":{"type":"object","name":"DataRange1d","id":"p1024"},"x_scale":{"type":"object","name":"LinearScale","id":"p1031"},"y_scale":{"type":"object","name":"LinearScale","id":"p1032"},"title":{"type":"object","name":"Title","id":"p1029","attributes":{"text":"N\u00famero de Afogamentos por Ano (Mundo)","text_color":"DarkBlue","text_font":"Arial","text_font_size":"26px","align":"center"}},"outline_line_color":"black","renderers":[{"type":"object","name":"GlyphRenderer","id":"p1056","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"p1007","attributes":{"selected":{"type":"object","name":"Selection","id":"p1008","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"p1009"},"data":{"type":"map","entries":[["index",{"type":"ndarray","array":{"type":"bytes","data":"AAAAAAEAAAACAAAAAwAAAAQAAAAFAAAABgAAAAcAAAAIAAAACQAAAAoAAAALAAAADAAAAA0AAAAOAAAADwAAABAAAAARAAAAEgAAABMAAAAUAAAAFQAAABYAAAAXAAAAGAAAABkAAAAaAAAAGwAAABwAAAAdAAAA"},"shape":[30],"dtype":"int32","order":"little"}],["Year",{"type":"ndarray","array":{"type":"bytes","data":"xgcAAMcHAADIBwAAyQcAAMoHAADLBwAAzAcAAM0HAADOBwAAzwcAANAHAADRBwAA0gcAANMHAADUBwAA1QcAANYHAADXBwAA2AcAANkHAADaBwAA2wcAANwHAADdBwAA3gcAAN8HAADgBwAA4QcAAOIHAADjBwAA"},"shape":[30],"dtype":"int32","order":"little"}],["Drowning",{"type":"ndarray","array":{"type":"bytes","data":"rAYHAOfuBgBQ0gYA+ssGANbDBgA3rAYAgHUGAN1OBgClNgYAcQ8GACvqBQBtvAUA74UFAGFOBQDxKQUAoRMFAIPhBABRwgQA5qYEAKeHBAAPcAQAEkoEAIE0BABLEgQAufEDAB3hAwDrywMAsrADAIqqAwANngMA"},"shape":[30],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"p1057","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1058"}}},"glyph":{"type":"object","name":"VArea","id":"p1053","attributes":{"x":{"type":"field","field":"Year"},"y1":{"type":"field","field":"Drowning"},"y2":{"type":"value","value":0},"fill_color":"#1f77b4"}},"nonselection_glyph":{"type":"object","name":"VArea","id":"p1054","attributes":{"x":{"type":"field","field":"Year"},"y1":{"type":"field","field":"Drowning"},"y2":{"type":"value","value":0},"fill_color":"#1f77b4","fill_alpha":0.1,"hatch_alpha":{"type":"value","value":0.1}}},"muted_glyph":{"type":"object","name":"VArea","id":"p1055","attributes":{"x":{"type":"field","field":"Year"},"y1":{"type":"field","field":"Drowning"},"y2":{"type":"value","value":0},"fill_color":"#1f77b4","fill_alpha":0.2,"hatch_alpha":{"type":"value","value":0.2}}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"p1030","attributes":{"logo":null,"autohide":true,"tools":[{"type":"object","name":"PanTool","id":"p1043"},{"type":"object","name":"WheelZoomTool","id":"p1044"},{"type":"object","name":"BoxZoomTool","id":"p1045","attributes":{"overlay":{"type":"object","name":"BoxAnnotation","id":"p1046","attributes":{"syncable":false,"level":"overlay","visible":false,"left_units":"canvas","right_units":"canvas","bottom_units":"canvas","top_units":"canvas","line_color":"black","line_alpha":1.0,"line_width":2,"line_dash":[4,4],"fill_color":"lightgrey","fill_alpha":0.5}}}},{"type":"object","name":"SaveTool","id":"p1047"},{"type":"object","name":"ResetTool","id":"p1048"},{"type":"object","name":"HelpTool","id":"p1049"},{"type":"object","name":"HoverTool","id":"p1059","attributes":{"renderers":"auto","tooltips":[["Ano","@Year"],["Mortes","@Drowning"]]}}]}},"left":[{"type":"object","name":"LinearAxis","id":"p1038","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1039","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"NumeralTickFormatter","id":"p1060","attributes":{"format":"0a"}},"axis_label":"Total de Casos","axis_label_text_color":"DarkBlue","axis_label_text_font_size":"24px","major_label_policy":{"type":"object","name":"AllLabels","id":"p1041"},"major_label_text_font_size":"16px"}}],"below":[{"type":"object","name":"LinearAxis","id":"p1033","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1034","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1035"},"axis_label":"Ano","axis_label_text_color":"DarkBlue","axis_label_text_font_size":"24px","major_label_policy":{"type":"object","name":"AllLabels","id":"p1036"},"major_label_text_font_size":"16px"}}],"center":[{"type":"object","name":"Grid","id":"p1037","attributes":{"axis":{"id":"p1033"},"grid_line_color":null,"grid_line_alpha":0.2}},{"type":"object","name":"Grid","id":"p1042","attributes":{"dimension":1,"axis":{"id":"p1038"},"grid_line_color":null,"grid_line_alpha":0.2}}],"background_fill_color":"blue","background_fill_alpha":0.1}}]}}
+    </script>
+    <script type="text/javascript">
+      (function() {
+        const fn = function() {
+          Bokeh.safely(function() {
+            (function(root) {
+              function embed_document(root) {
+              const docs_json = document.getElementById('p1064').textContent;
+              const render_items = [{"docid":"075a5bce-69ba-49b5-adcb-2b1c8698b4d5","roots":{"p1022":"ef39d45f-f524-43ec-8814-3e3aeae6345b"},"root_ids":["p1022"]}];
+              root.Bokeh.embed.embed_items(docs_json, render_items);
+              }
+              if (root.Bokeh !== undefined) {
+                embed_document(root);
+              } else {
+                let attempts = 0;
+                const timer = setInterval(function(root) {
+                  if (root.Bokeh !== undefined) {
+                    clearInterval(timer);
+                    embed_document(root);
+                  } else {
+                    attempts++;
+                    if (attempts > 100) {
+                      clearInterval(timer);
+                      console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                    }
+                  }
+                }, 10, root)
+              }
+            })(window);
+          });
+        };
+        if (document.readyState != "loading") fn();
+        else document.addEventListener("DOMContentLoaded", fn);
+      })();
+    </script>
+  </body>
+</html>

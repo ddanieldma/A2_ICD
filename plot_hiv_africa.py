@@ -46,6 +46,9 @@ def plot_1():
     grid1_fig.xgrid.grid_line_color = None
     grid1_fig.ygrid.grid_line_color = None
 
+    grid1_fig.background_fill_color = "red"
+    grid1_fig.background_fill_alpha = 0.1
+
     return grid1_fig
 
 

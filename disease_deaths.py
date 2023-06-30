@@ -54,5 +54,9 @@ disease_fig.circle(coordenada_x_2, coordenada_y_2, size=50, color="red", alpha=0
 disease_fig.toolbar.autohide = True
 disease_fig.toolbar.logo = None
 
+disease_fig.background_fill_color = "green"
+disease_fig.background_fill_alpha = 0.1
+
+
 show(disease_fig)
 

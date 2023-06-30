@@ -20,6 +20,5 @@ grid_hiv_africa.toolbar.logo = None
 
 output_file("grid_plot.html")
 
-
 save(grid_hiv_africa)
 show(grid_hiv_africa)
