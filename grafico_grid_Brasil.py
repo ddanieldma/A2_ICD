@@ -31,7 +31,6 @@ grafico_anos_mortes_100k.width = 700
 grafico_anos_mortes_100k.height = 400
 
 #Definindo propriedades do eixo
-
 grafico_anos_mortes_100k.xaxis.axis_label = "Anos"
 grafico_anos_mortes_100k.xaxis.minor_tick_line_color = "black"
 grafico_anos_mortes_100k.axis.minor_tick_in = 0
@@ -50,13 +49,14 @@ grafico_anos_mortes_100k.outline_line_color = "black"
 grafico_anos_mortes_100k.xgrid.grid_line_color = None
 grafico_anos_mortes_100k.ygrid.grid_line_color = None
 
+
 # Propiedades das ferramentas
 grafico_anos_mortes_100k.toolbar.logo = None
 grafico_anos_mortes_100k.toolbar.autohide = True
 
 #-------------------------------------------------------------------------------------
 # Gráfico anos e mortes
-grafico_anos_mortes = figure(x_range = df_causas_de_morte_Brasil["Year"])
+grafico_anos_mortes = figure(x_range = df_causas_de_morte_Brasil["Year"], tools="box_zoom,pan,reset,save,wheel_zoom")
 grafico_anos_mortes.line(x="Year", y = "Total Deaths", line_color = "black" ,source = source_grid_Brasil)
 
 interativo_anos_mortes = HoverTool(tooltips=[("Ano", "@Year"), ("Mortes", "@{Total Deaths}")])
@@ -101,11 +101,14 @@ grafico_anos_mortes.toolbar.autohide = True
 grafico_anos_mortes.xgrid.grid_line_color = None
 grafico_anos_mortes.ygrid.grid_line_color = None
 
+# Configurando as propriedades da tool bar
+grafico_anos_mortes.toolbar.logo = None
+grafico_anos_mortes.toolbar.autohide = True
 #-------------------------------------------------------------------------------------
 
 # Gráfico população
 
-grafico_anos_pop = figure(x_range = df_causas_de_morte_Brasil["Year"])
+grafico_anos_pop = figure(x_range = df_causas_de_morte_Brasil["Year"], tools="box_zoom,pan,reset,save,wheel_zoom")
 grafico_anos_pop.line(x="Year", y = "Population", line_color = "black",source = source_grid_Brasil)
 
 interativo_anos_pop = HoverTool(tooltips=[("Ano", "@Year"), ("População", "@Population")])
@@ -150,10 +153,13 @@ grafico_anos_pop.toolbar.autohide = True
 grafico_anos_pop.xgrid.grid_line_color = None
 grafico_anos_pop.ygrid.grid_line_color = None
 
+# Configurando as propriedades da tool bar
+grafico_anos_pop.toolbar.logo = None
+grafico_anos_pop.toolbar.autohide = True
 #-------------------------------------------------------------------------------------
 
 # Gráfico percentual change
-grafico_percentual = figure(x_range = df_causas_de_morte_Brasil["Year"])
+grafico_percentual = figure(x_range = df_causas_de_morte_Brasil["Year"], tools="box_zoom,pan,reset,save,wheel_zoom")
 
 grafico_percentual.vbar(x= "Year", top = "pct_pop - pct_death", width = 0.8 , color = "Cor", fill_alpha = 0.4, line_alpha = 0.4 ,source = source_grid_Brasil)
 # grafico_percentual.line(x = "Year", y= "Percentual change in the population", line_color = "red", source = source)
@@ -201,7 +207,12 @@ grafico_percentual.toolbar.autohide = True
 grafico_percentual.xgrid.grid_line_color = None
 grafico_percentual.ygrid.grid_line_color = None
 
+# Configurando as propriedades da tool bar
+grafico_percentual.toolbar.logo = None
+grafico_percentual.toolbar.autohide = True
 #-------------------------------------------------------------------------------------
 
 combinados = gridplot([[grafico_anos_mortes, grafico_anos_pop],[grafico_anos_mortes_100k, grafico_percentual]])
+combinados.toolbar.autohide = True
+combinados.toolbar.logo = None
 show(combinados)

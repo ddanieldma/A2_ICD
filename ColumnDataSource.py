@@ -20,28 +20,39 @@ df_causas_de_morte["Deaths per 100k"]= df_causas_de_morte["Total Deaths"]*10**5/
 df_causas_de_morte_Brasil = df_causas_de_morte[(df_causas_de_morte["Country Code"] == "BRA")].reset_index()
 
 #-----------------------------------------------------------------------------------------------------------------------------------------
-# ColumnDataSource Gráfico 1
+#Gráfico 1 - Nested
+
+# Vamos fazer a proporção de cada doença a cada 100000 habitantes
+#for colunas in df_causas_de_morte.columns[df_causas_de_morte.columns.get_loc("Meningitis") : df_causas_de_morte.columns.get_loc("Continente")]:
+#    df_causas_de_morte[colunas]= df_causas_de_morte[colunas]*10**5/df_causas_de_morte["Population"]
 
 # Somando todos os valores das colunas
 columns_to_sum = df_causas_de_morte.columns[df_causas_de_morte.columns.get_loc("Meningitis") : df_causas_de_morte.columns.get_loc("Continente")]
+
 # Somando todos os anos
 somas_por_continente = df_causas_de_morte.groupby("Continente", as_index=False)[columns_to_sum].sum()
+
 # Transformando os dados para long format para melhor trabalhar
 tabela_long_format = pd.melt(somas_por_continente, id_vars="Continente", var_name="Name of the disease", value_name="Number of cases")
+
 # Definindo o nome da doença como Index para melhor entendermos os 3 maiores valores
 tabela_long_format = tabela_long_format.set_index("Name of the disease")
+
 # Pegando os 3 maiores valores para cada doença em cada continente
 top_3_values_per_continent = tabela_long_format.groupby("Continente")["Number of cases"].nlargest(3)
+
 # Transformando em dataframe
 top_3_values_per_continent = top_3_values_per_continent.to_frame()
+
 # Tirando o index como algo de multicategoria
 top_3_values_per_continent = top_3_values_per_continent.reset_index()
+
 # Colocando na ordem para mostrar do maior para o menor
 top_3_values_per_continent = top_3_values_per_continent.sort_values("Number of cases", ascending= False)
 
 # Dicionário com cores
 diseases = top_3_values_per_continent["Name of the disease"].unique()
-color = brewer["Greys"][7]
+color = brewer["Spectral"][7]
 dicionario_cores = dict(zip(diseases,color))
 
 # Colocando os dados como uma tupla para realizar um nested bar column
@@ -95,7 +106,7 @@ df_heatmap= df_heatmap.rename(columns={"level_1": "Disease_Name"})
 source_heatmap = ColumnDataSource(df_heatmap)
 
 #---------------------------------------------------------------------------------------
-# Gráfico 3
+# Gráfico 3 - Gridplot
 
 # Criando colunas sobre o percentual de variação
 df_causas_de_morte_Brasil["Percentual change in the population"]= df_causas_de_morte_Brasil["Population"].pct_change()

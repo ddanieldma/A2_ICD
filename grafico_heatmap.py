@@ -17,15 +17,18 @@ TOOLS = "hover,save,pan,box_zoom,reset,wheel_zoom"
 heatmap =  figure(x_range = years, y_range  = diseases, tools = TOOLS)
 
 # Definindo as Propiedadades do título
-heatmap.title = f"Top 10 doenças que mais mataram no Brasil({years[0]}-{years[-1]})"
-
+heatmap.title.text = f"Top 10 doenças que mais mataram no Brasil({years[0]}-{years[-1]})"
+heatmap.title.text_color = "Black"
+heatmap.title.text_font = "Arial"
+heatmap.title.text_font_size = "15px"
+heatmap.title.align = "center"
 # definindo interatividade 
 interativo = HoverTool(tooltips=[("Ano", "@Year"), ("Doença", "@Disease_Name"), ("Número de casos", "@casos")])
 heatmap.add_tools(interativo)
 
 # Definindo o tamanho do heatmap
-heatmap.width = 900
-heatmap.height = 400
+heatmap.width = 1100
+heatmap.height = 600
 
 # adicionando propriedades no grid
 heatmap.grid.grid_line_color = None
@@ -33,7 +36,7 @@ heatmap.grid.grid_line_color = None
 # Adicionando propriedades aos eixos
 heatmap.axis.axis_line_color = None
 heatmap.axis.major_tick_line_color = None
-heatmap.axis.major_label_text_font_size = "10px"
+heatmap.axis.major_label_text_font_size = "12px"
 heatmap.axis.major_label_standoff = 0
 heatmap.xaxis.major_label_orientation = pi / 3
 

@@ -37,6 +37,8 @@ grafico_juntos.outline_line_color = "black"
 # Tirando o Grid
 grafico_juntos.xgrid.grid_line_color = None
 grafico_juntos.ygrid.grid_line_color = None
+grafico_juntos.grid.grid_line_color = None
+
 
 # Adicionando interatividade
 interativo = HoverTool(tooltips = [("Continent", "@Continente"), ("Doença", "@Doenca"),("Número de casos", "@numero_de_casos")])
@@ -46,8 +48,9 @@ grafico_juntos.add_tools(interativo)
 grafico_juntos.width = 1500
 grafico_juntos.height = 720
 
-# Definindo propriedades do grid
-grafico_juntos.xaxis.major_label_orientation = 1
+# Configurando as propriedades da tool bar
+grafico_juntos.toolbar.logo = None
+grafico_juntos.toolbar.autohide = True
 
 # #mostrando o gráfico
 show(grafico_juntos)
