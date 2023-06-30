@@ -1,20 +1,20 @@
 import pandas as pd
 from bokeh.models import ColumnDataSource
 
-df = pd.read_csv("new_cause_of_death_guilherme.csv")
+df = pd.read_csv("new_cause_of_death.csv")
 
-
+df_guilherme = df.copy()
 
 #GRÁFICO MORTES POR DOENÇAS
 
 #Criando uma nova coluna que representa a soma dos valores numéricos das colunas especificadas
-df['Soma_doenças'] = df[["Meningitis","Alzheimer's Disease and Other Dementias", "Parkinson's Disease", 
+df_guilherme['Soma_doenças'] = df_guilherme[["Meningitis","Alzheimer's Disease and Other Dementias", "Parkinson's Disease", 
 "Cardiovascular Diseases","Lower Respiratory Infections", "Acute Hepatitis", "Digestive Diseases", "Cirrhosis and Other Chronic Liver Diseases", 
 "Chronic Respiratory Diseases", "Diabetes Mellitus","Chronic Kidney Disease", "Nutritional Deficiencies", "Malaria", "Maternal Disorders", 
 "HIV/AIDS","Drug Use Disorders","Tuberculosis","Neonatal Disorders","Alcohol Use Disorders","Diarrheal Diseases"]].sum(axis=1)
 
 #Filtrando por ano (+ soma de todos os valores da coluna ['Soma_doenças'] desse ano)
-df_diseases = df.groupby('Year')['Soma_doenças'].sum().reset_index()
+df_diseases = df_guilherme.groupby('Year')['Soma_doenças'].sum().reset_index()
 
 #Criação do ColumnDataSource
 cds_diseases = ColumnDataSource(df_diseases)
@@ -25,12 +25,12 @@ cds_diseases = ColumnDataSource(df_diseases)
 #GRÁFICO MORTES NÃO RELACIONADAS A DOENÇAS
 
 #Criando uma nova coluna que representa a soma dos valores numéricos das colunas especificadas
-df['Soma_não_doenças'] = df[["Drowning", "Interpersonal Violence", "Fire, Heat, and Hot Substances", "Road Injuries", "Poisonings" ,
+df_guilherme['Soma_não_doenças'] = df_guilherme[["Drowning", "Interpersonal Violence", "Fire, Heat, and Hot Substances", "Road Injuries", "Poisonings" ,
 "Protein-Energy Malnutrition", "Conflict and Terrorism", "Self-harm", "Exposure to Forces of Nature", 
 "Environmental Heat and Cold Exposure"]].sum(axis=1)
 
 #Filtrando por ano (+ soma de todos os valores da coluna ['Soma'] desse ano)
-df_non_diseases = df.groupby('Year')['Soma_não_doenças'].sum().reset_index()
+df_non_diseases = df_guilherme.groupby('Year')['Soma_não_doenças'].sum().reset_index()
 
 #Criação do ColumnDataSource
 cds_non_diseases = ColumnDataSource(df_non_diseases)
@@ -41,7 +41,7 @@ cds_non_diseases = ColumnDataSource(df_non_diseases)
 #GRÁFICO AFOGAMENTO
 
 #Filtragem por ano com a soma dos valores da coluna ['Drowning']
-df_drowning_sum = df.groupby('Year')['Drowning'].sum().reset_index()
+df_drowning_sum = df_guilherme.groupby('Year')['Drowning'].sum().reset_index()
 
 #Criação do ColumnDataSource
 cds_afogamento = ColumnDataSource(df_drowning_sum)
@@ -54,7 +54,7 @@ cds_afogamento = ColumnDataSource(df_drowning_sum)
 #GRÁFICO COMPARAÇÃO CONTINENTES
 
 #Filtragem por continente + soma dos registros de mortes por HIV/AIDS de cada um
-df_cont_hiv = df.groupby('Continente')['HIV/AIDS'].sum().reset_index()
+df_cont_hiv = df_guilherme.groupby('Continente')['HIV/AIDS'].sum().reset_index()
 
 #Obtenção dos 5 continentes (para aplicar a paleta)
 continentes = df_cont_hiv['Continente'].unique()
@@ -87,10 +87,10 @@ cds_af_x_all = ColumnDataSource(data=dict(x=eixo_x_afxall, y=eixo_y_afxall))
 #GRÁFICO TOP 10 PAÍSES
 
 #Criação de uma nova coluna que representa a quantidade de mortes em decorrência de HIV/AIDS a cada 100k habitantes em cada país
-df["per_100k_hab"] = df["HIV/AIDS"]/df["população"]*100000
+df_guilherme["per_100k_hab"] = df_guilherme["HIV/AIDS"]/df_guilherme["Population"]*100000
 
 #Filtragem países africanos + soma das mortes a cada 100000 habitantes por ano + valores em ordem decrescente + top 10 valores
-df_countries_hiv = df[df['Continente'] == "Africa"].groupby('Country/Territory')['per_100k_hab'].sum().sort_values(ascending=False).head(10).reset_index()
+df_countries_hiv = df_guilherme[df_guilherme['Continente'] == "Africa"].groupby('Country/Territory')['per_100k_hab'].sum().sort_values(ascending=False).head(10).reset_index()
 #O objetivo é obter os 10 países com o maior histórico de mortes a cada 100000 habitantes da áfrica (em decorrência de HIV)
 
 #Criação do ColumnDataSource
@@ -100,7 +100,7 @@ cds_top_10 = ColumnDataSource(df_countries_hiv)
 #GRÁFICO LINHA DO TEMPO HIV ÁFRICA
 
 #Filtragem apenas por países africanos + soma das mortes por HIV/AIDS em cada ano
-df_africa_hiv_timeline = df[df['Continente'] == "Africa"].groupby('Year')['HIV/AIDS'].sum().reset_index()
+df_africa_hiv_timeline = df_guilherme[df_guilherme['Continente'] == "Africa"].groupby('Year')['HIV/AIDS'].sum().reset_index()
 
 #Criação do ColumnDataSource
 cds_timeline = ColumnDataSource(df_africa_hiv_timeline)
