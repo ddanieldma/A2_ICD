@@ -6,7 +6,7 @@ from bokeh.io import output_file, save, show
 from bokeh.layouts import gridplot
 from bokeh.models.annotations import Span, BoxAnnotation
 from bokeh.models import ColumnDataSource, FactorRange, HoverTool, NumeralTickFormatter
-from bokeh.palettes import brewer
+from bokeh.palettes import brewer, viridis
 
 
 # Lendo os dados
@@ -52,7 +52,7 @@ top_3_values_per_continent = top_3_values_per_continent.sort_values("Number of c
 
 # Dicionário com cores
 diseases = top_3_values_per_continent["Name of the disease"].unique()
-color = brewer["Spectral"][7]
+color = viridis(7)
 dicionario_cores = dict(zip(diseases,color))
 
 # Colocando os dados como uma tupla para realizar um nested bar column

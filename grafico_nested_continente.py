@@ -9,7 +9,13 @@ from ColumnDataSource import source_grafico_nested, continentes
 
 # Plotando o gráfico
 grafico_juntos = figure(x_range = FactorRange(*continentes))
-grafico_juntos.vbar(x = "agrupado" , top = "numero_de_casos",color = "Cor", width = 0.8, source=source_grafico_nested)
+grafico_juntos.vbar(x = "agrupado" , top = "numero_de_casos",
+                    color = "Cor", width = 0.8, 
+                    legend_field = "Doenca",
+                    source=source_grafico_nested)
+
+grafico_juntos.legend.label_text_font = "Arial"
+
 
 # Adicionando propriedades aos títulos do gráfico
 grafico_juntos.title.text = "As três maiores causas de morte por continente"
@@ -22,7 +28,7 @@ grafico_juntos.title.align = "center"
 grafico_juntos.xaxis.axis_label = "Continentes"
 grafico_juntos.xaxis.minor_tick_line_color = "black"
 grafico_juntos.xaxis.minor_tick_in = 0
-grafico_juntos.xaxis.major_label_orientation = pi/3
+grafico_juntos.xaxis.major_label_orientation = pi/4
 grafico_juntos.xaxis.major_label_text_font_size = "9pt"
 
 grafico_juntos.yaxis.axis_label = "Quantidade de mortes"

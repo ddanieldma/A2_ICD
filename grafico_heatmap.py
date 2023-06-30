@@ -33,12 +33,16 @@ heatmap.height = 600
 # adicionando propriedades no grid
 heatmap.grid.grid_line_color = None
 
+# Configurando as propriedades da tool bar
+heatmap.toolbar.logo = None
+heatmap.toolbar.autohide = True
+
 # Adicionando propriedades aos eixos
 heatmap.axis.axis_line_color = None
 heatmap.axis.major_tick_line_color = None
 heatmap.axis.major_label_text_font_size = "12px"
 heatmap.axis.major_label_standoff = 0
-heatmap.xaxis.major_label_orientation = pi / 3
+heatmap.xaxis.major_label_orientation = pi / 4
 
 # Adicionando uma escala de cores que será posteriormente usada para o heatmap
 color_chart = linear_cmap("casos", colors, low = df_heatmap.casos.min(), high=df_heatmap.casos.max())
