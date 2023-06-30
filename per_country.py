@@ -4,6 +4,7 @@ from bokeh.plotting import figure
 from bokeh.io import output_file, save, show
 from bokeh.models import ColumnDataSource
 from bokeh.transform import factor_cmap
+from bokeh.models import HoverTool
 
 def plot_4():
 
@@ -38,6 +39,9 @@ def plot_4():
     # Tirando o Grid
     grid3_fig.xgrid.grid_line_color = None
     grid3_fig.ygrid.grid_line_color = None
+
+    hover = HoverTool(tooltips=[("País", "@{Country/Territory}")])
+    grid3_fig.add_tools(hover)
 
     return grid3_fig
 

@@ -11,7 +11,7 @@ def plot_2():
     
     grid2_fig = figure(x_range=eixo_x_afxall)
 
-    hover = HoverTool(tooltips=[("Mortes:", "@top")], mode='vline')
+    hover = HoverTool(tooltips=[("Mortes", "@top")], mode='vline')
     grid2_fig.add_tools(hover)
 
     #Atribuição do tipo de plot com os eixos e cores desejados

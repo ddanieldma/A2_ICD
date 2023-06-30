@@ -14,7 +14,7 @@ drowning_fig = figure(width = 1280, height = 720)
 drowning_fig.varea(x = 'Year', y1 = 'Drowning', y2 = 0,source = cds_afogamento)
 
 #Adicionando o hovertool para a vizualização do ano e do número de mortes
-hover = HoverTool(tooltips=[("Ano: ", "@Year"), ("Mortes:", "@Drowning")])
+hover = HoverTool(tooltips=[("Ano", "@Year"), ("Mortes", "@Drowning")])
 drowning_fig.add_tools(hover)
 
 #Customização do plot

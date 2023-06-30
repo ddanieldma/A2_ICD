@@ -19,7 +19,7 @@ def plot_1():
             line_color = None)
     
     #Adicionando o hovertool para a vizualização do continente e da quantidade de mortes
-    hover = HoverTool(tooltips=[("Continente:", "@Continente"),("Mortes: ", "@{HIV/AIDS}{0,0}")])
+    hover = HoverTool(tooltips=[("Continente", "@Continente"),("Mortes", "@{HIV/AIDS}{0,0}")])
     grid1_fig.add_tools(hover)
 
     #Customização do plot

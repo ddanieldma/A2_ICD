@@ -14,7 +14,7 @@ def plot_3():
     #Atribuição do tipo de plot
     grid4_fig.line(x="Year", y="HIV/AIDS", source=cds_timeline, line_color = '#8b0000')
     
-    hover = HoverTool(tooltips=[("Mortes:", "$y{0,0}"), ("Ano:", "@Year")], mode='vline')
+    hover = HoverTool(tooltips=[("Mortes", "$y{0,0}"), ("Ano", "@Year")], mode='vline')
     grid4_fig.add_tools(hover)
 
     #Customização do plot

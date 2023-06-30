@@ -14,7 +14,7 @@ non_disease_fig = figure(width = 1280, height = 720)
 non_disease_fig.line(x="Year", y="Soma_não_doenças", source=cds_non_diseases, line_color = '#399e1f')
 
 #Adicionando o hovertool para a vizualização do ano e da quantidade de mortes
-hover = HoverTool(tooltips=[("Mortes:", "$y{0,0}"),("Ano: ", "@Year")])
+hover = HoverTool(tooltips=[("Mortes", "$y{0,0}"),("Ano", "@Year")])
 non_disease_fig.add_tools(hover)
 
 #Customização do plot
