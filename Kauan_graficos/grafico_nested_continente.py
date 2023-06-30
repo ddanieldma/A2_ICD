@@ -18,10 +18,10 @@ grafico_juntos.legend.label_text_font = "Arial"
 
 
 # Adicionando propriedades aos títulos do gráfico
-grafico_juntos.title.text = "As três maiores causas de morte por continente"
+grafico_juntos.title.text = "As três maiores causas de morte por continente de 1990 até 2019"
 grafico_juntos.title.text_color = "Black"
 grafico_juntos.title.text_font = "Arial"
-grafico_juntos.title.text_font_size = "15px"
+grafico_juntos.title.text_font_size = "22px"
 grafico_juntos.title.align = "center"
 
 #Definindo propriedades do eixo
@@ -51,12 +51,16 @@ interativo = HoverTool(tooltips = [("Continent", "@Continente"), ("Doença", "@D
 grafico_juntos.add_tools(interativo)
 
 # Definindo altura e largura
-grafico_juntos.width = 1500
+grafico_juntos.width = 1280
 grafico_juntos.height = 720
 
 # Configurando as propriedades da tool bar
 grafico_juntos.toolbar.logo = None
 grafico_juntos.toolbar.autohide = True
+
+# Adicionando cor de fundo
+grafico_juntos.background_fill_color = "blue"
+grafico_juntos.background_fill_alpha = 0.1
 
 # #mostrando o gráfico
 show(grafico_juntos)
