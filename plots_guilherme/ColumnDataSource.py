@@ -1,7 +1,7 @@
 import pandas as pd
 from bokeh.models import ColumnDataSource
 
-df = pd.read_csv("new_cause_of_death.csv")
+df = pd.read_csv("new_cause_of_death_guilherme.csv")
 
 
 
