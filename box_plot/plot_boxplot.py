@@ -46,8 +46,8 @@ boxplot_cardiovascular_deaths.title.text_font = "arial"
 boxplot_cardiovascular_deaths.title.text_font_size = "22px"
 
 # dimensões do plot
-boxplot_cardiovascular_deaths.width = 1000
-boxplot_cardiovascular_deaths.height = 600
+boxplot_cardiovascular_deaths.width = 1280
+boxplot_cardiovascular_deaths.height = 720
 
 # fundo
 boxplot_cardiovascular_deaths.background_fill_color = "Red"
