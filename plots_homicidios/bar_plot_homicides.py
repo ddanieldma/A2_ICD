@@ -1,7 +1,7 @@
 from organizing_data_homicides import data_homicides_by_continent, data_homicides_by_continent_proportion, df_homicides_by_continent
 from bokeh.plotting import figure, output_file, show
 from bokeh.layouts import gridplot
-from bokeh.models import NumeralTickFormatter
+from bokeh.models import NumeralTickFormatter, Span, Label
 
 import os
 os.chdir("plots_homicidios")
@@ -36,8 +36,6 @@ def grafico_padrao(figure):
 		# formatando números do eixo y
 		figure.yaxis.formatter = NumeralTickFormatter(format = '0.0a')
 		
-		# titulo do eixo y
-		figure.yaxis.axis_label = "Mortes"
 		# texto do eixo y
 		figure.yaxis.axis_label_text_font_size = "14px"
 		figure.yaxis.axis_label_text_font = "arial"
@@ -54,6 +52,21 @@ plot_interpersonal_violence = figure(x_range = df_homicides_by_continent["Contin
 # fazendo gráfico
 plot_interpersonal_violence.vbar(x = "Continente", top = "Inverted Interpersonal Violence", fill_color = "Red", width = 0.85, source = data_homicides_by_continent, line_color = None)
 
+#=================================
+
+# adicionando anotação
+# adicionando span no primerio gráfico
+linha_3_milhões = Span(location = -3000000, dimension = "width", line_color = "Orange", line_width = 3)
+
+# adicionando texto referente a linha
+text = Label(x = 200, y = 110, x_units = "screen", y_units = "screen", text = "Mais de 273 mortes\n por dia", text_color = "Orange")
+
+#colocando linha no plot
+plot_interpersonal_violence.add_layout(linha_3_milhões)
+plot_interpersonal_violence.add_layout(text)
+
+#=================================
+
 # Personalizando
 
 # Título do gráfico
@@ -61,6 +74,9 @@ plot_interpersonal_violence.title = "Mortes por violencia interpessoal por conti
 
 # colocando configuração padrão do gráfico
 plot_interpersonal_violence = grafico_padrao(plot_interpersonal_violence)
+
+# titulo do eixo y
+plot_interpersonal_violence.yaxis.axis_label = "Mortes"
 
 #=================================
 # mortes por violencia interpessoal por continente
@@ -76,6 +92,9 @@ plot_conflict_terrorism.title = "Mortes por conflitos e terrorismo por continent
 
 # colocando configuração padrão do gráfico
 plot_conflict_terrorism = grafico_padrao(plot_conflict_terrorism)
+
+# titulo do eixo y
+plot_conflict_terrorism.yaxis.axis_label = "Mortes"
 
 #================================================================================================
 # plots com números em proporção
