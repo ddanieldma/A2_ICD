@@ -2,8 +2,12 @@ import pandas as pd
 
 from bokeh.models import ColumnDataSource
 
-# lendo dataset
-df_cause_of_death = pd.read_csv("new_cause_of_death.csv")
+# importando dataset
+# colocando a pasta superior com o módulo que contem o dataframe no path do python
+import sys
+sys.path.append('../A2_ICD')
+
+from dataframe import df_cause_of_death
 
 # separando mortes por acidentes cardiovasculares por país no ano de 2019
 df_countries_cardio_2019 = df_cause_of_death[df_cause_of_death["Year"] == 2019].groupby(['Country/Territory', 'Continente', "Population"]).agg({'Cardiovascular Diseases': 'sum'}).reset_index()

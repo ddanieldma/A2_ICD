@@ -2,7 +2,12 @@ import pandas as pd
 
 from bokeh.models import ColumnDataSource
 
-df_cause_of_death = pd.read_csv("new_cause_of_death.csv")
+# importando dataset
+# colocando a pasta superior com o módulo que contem o dataframe no path do python
+import sys
+sys.path.append('../A2_ICD')
+
+from dataframe import df_cause_of_death
 
 # doenças escolhidas
 causes = ["Alzheimer's Disease and Other Dementias", "Parkinson's Disease", "Lower Respiratory Infections", "Diabetes Mellitus", "Chronic Respiratory Diseases", "Neoplasms"]

@@ -1,8 +1,12 @@
 import pandas as pd
 from bokeh.models import ColumnDataSource
-#================================================================================================
-# lendo dados
-df_cause_of_death = pd.read_csv("new_cause_of_death.csv")
+
+# importando dataset
+# colocando a pasta superior com o módulo que contem o dataframe no path do python
+import sys
+sys.path.append('../A2_ICD')
+
+from dataframe import df_cause_of_death
 
 #================================================================================================
 # mortes provocadas por homicidios (violencia interpesoal e conflitos/terrorismo) por continentes e por ano
