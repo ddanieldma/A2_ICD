@@ -6,7 +6,7 @@ from bokeh.plotting import figure, show
 from bokeh.io import output_file, save, show
 from bokeh.layouts import gridplot
 from bokeh.models.annotations import Span, BoxAnnotation
-from bokeh.models import ColumnDataSource, FactorRange, BasicTicker, PrintfTickFormatter, HoverTool
+from bokeh.models import ColumnDataSource, FactorRange, BasicTicker, PrintfTickFormatter, HoverTool, LinearColorMapper
 from bokeh.transform import linear_cmap
 from math import pi
 
@@ -18,6 +18,14 @@ df_causas_de_morte_Brasil["Percentual change in the deaths"] = df_causas_de_mort
 df_causas_de_morte_Brasil["Percental change in the 100k deaths"] = df_causas_de_morte_Brasil["Deaths per 100k"].pct_change()*100
 df_causas_de_morte_Brasil["pct_pop - pct_death"]= df_causas_de_morte_Brasil["Percentual change in the population"]-df_causas_de_morte_Brasil["Percentual change in the deaths"]
 df_causas_de_morte_Brasil = df_causas_de_morte_Brasil.dropna()
+
+#Adicionando coluna para a cor
+def verde_ou_vermelho(x):
+    if x > 0:
+        return 'green'
+    else:
+        return 'red'
+df_causas_de_morte_Brasil["Cor"] = df_causas_de_morte_Brasil["pct_pop - pct_death"].apply(verde_ou_vermelho)
 
 # Transformando o nosso datafram em ColumnDataSource
 source = ColumnDataSource(df_causas_de_morte_Brasil)
@@ -34,7 +42,7 @@ interativo_anos_mortes_100k = HoverTool(tooltips=[("Ano", "@Year"), ("Mortes por
 grafico_anos_mortes_100k.add_tools(interativo_anos_mortes_100k)
 
 # Adicionando propriedades aos títulos do gráfico
-grafico_anos_mortes_100k.title.text = "Gráfico sobre como variou a morte a cada 100 mil habitantes de 1990 - 2019"
+grafico_anos_mortes_100k.title.text = "Quantidade de mortes a cada 100 mil habitantes de 1990 - 2019"
 grafico_anos_mortes_100k.title.text_color = "Black"
 grafico_anos_mortes_100k.title.text_font = "Arial"
 grafico_anos_mortes_100k.title.text_font_size = "15px"
@@ -71,13 +79,13 @@ grafico_anos_mortes_100k.toolbar.autohide = True
 #-------------------------------------------------------------------------------------
 # Gráfico anos e mortes
 grafico_anos_mortes = figure(x_range = df_causas_de_morte_Brasil["Year"])
-grafico_anos_mortes.line(x="Year", y = "Total Deaths", source = source)
+grafico_anos_mortes.line(x="Year", y = "Total Deaths", line_color = "black" ,source = source)
 
 interativo_anos_mortes = HoverTool(tooltips=[("Ano", "@Year"), ("Mortes", "@{Total Deaths}")])
 grafico_anos_mortes.add_tools(interativo_anos_mortes)
 
 # Adicionando propriedades aos títulos do gráfico
-grafico_anos_mortes.title.text = "Variação quantidade de mortes de 1990 - 2019"
+grafico_anos_mortes.title.text = "Quantidade de mortes de 1990 - 2019"
 grafico_anos_mortes.title.text_color = "Black"
 grafico_anos_mortes.title.text_font = "Arial"
 grafico_anos_mortes.title.text_font_size = "15px"
@@ -95,7 +103,7 @@ grafico_anos_mortes.xaxis.minor_tick_in = 0
 grafico_anos_mortes.xaxis.major_label_orientation = pi/3
 grafico_anos_mortes.xaxis.major_label_text_font_size = "9pt"
 
-grafico_anos_mortes.yaxis.axis_label = "População Brasileira"
+grafico_anos_mortes.yaxis.axis_label = "Quantidade de mortos"
 grafico_anos_mortes.yaxis.major_label_orientation = "vertical"
 grafico_anos_mortes.yaxis.minor_tick_line_color = "black"
 grafico_anos_mortes.yaxis.minor_tick_line_color = None
@@ -113,22 +121,19 @@ grafico_anos_mortes.toolbar.autohide = True
 # Tirando o Grid
 grafico_anos_mortes.xgrid.grid_line_color = None
 grafico_anos_mortes.ygrid.grid_line_color = None
-# Tirando o Grid
-grafico_anos_mortes.xgrid.grid_line_color = None
-grafico_anos_mortes.ygrid.grid_line_color = None
 
 #-------------------------------------------------------------------------------------
 
 # Gráfico população
 
 grafico_anos_pop = figure(x_range = df_causas_de_morte_Brasil["Year"])
-grafico_anos_pop.line(x="Year", y = "Population", source = source)
+grafico_anos_pop.line(x="Year", y = "Population", line_color = "black",source = source)
 
 interativo_anos_pop = HoverTool(tooltips=[("Ano", "@Year"), ("População", "@Population")])
 grafico_anos_pop.add_tools(interativo_anos_pop)
 
 # Adicionando propriedades aos títulos do gráfico
-grafico_anos_pop.title.text = "Gráfico sobre como variou a população de 1990 - 2019"
+grafico_anos_pop.title.text = "População Brasileira de 1990 - 2019"
 grafico_anos_pop.title.text_color = "Black"
 grafico_anos_pop.title.text_font = "Arial"
 grafico_anos_pop.title.text_font_size = "15px"
@@ -170,13 +175,51 @@ grafico_anos_pop.ygrid.grid_line_color = None
 # Gráfico percentual change
 grafico_percentual = figure(x_range = df_causas_de_morte_Brasil["Year"])
 
-grafico_percentual.vbar(x= "Year", top = "pct_pop - pct_death", width = 0.8 , fill_alpha = 0.2 ,source = source)
-grafico_percentual.line(x = "Year", y= "Percentual change in the population", line_color = "red", source = source)
-grafico_percentual.line(x = "Year", y= "Percentual change in the deaths", line_color = "purple", source = source)
+grafico_percentual.vbar(x= "Year", top = "pct_pop - pct_death", width = 0.8 , color = "Cor", fill_alpha = 0.2, line_alpha = 0.2 ,source = source)
+# grafico_percentual.line(x = "Year", y= "Percentual change in the population", line_color = "red", source = source)
+# grafico_percentual.line(x = "Year", y= "Percentual change in the deaths", line_color = "purple", source = source)
+
+
+# Adicionando propriedades aos títulos do gráfico
+grafico_percentual.title.text = "Diferença entre a taxa de crescimento da população e a taxa de crescimento de mortes"
+grafico_percentual.title.text_color = "Black"
+grafico_percentual.title.text_font = "Arial"
+grafico_percentual.title.text_font_size = "15px"
+grafico_percentual.title.align = "center"
+
+# Modificando o tamanho do output
+grafico_percentual.width = 700
+grafico_percentual.height = 400
+
+#Definindo propriedades do eixo
+
+grafico_percentual.xaxis.axis_label = "Anos"
+grafico_percentual.xaxis.minor_tick_line_color = "black"
+grafico_percentual.xaxis.minor_tick_in = 0
+grafico_percentual.xaxis.major_label_orientation = pi/3
+grafico_percentual.xaxis.major_label_text_font_size = "9pt"
+
+grafico_percentual.yaxis.axis_label = "Diferença percentual (*100)"
+grafico_percentual.yaxis.major_label_orientation = "vertical"
+grafico_percentual.yaxis.minor_tick_line_color = "black"
+grafico_percentual.yaxis.minor_tick_line_color = None
+
+# Definindo a borda
+grafico_percentual.outline_line_color = "black"
 
 # Tirando o Grid
 grafico_percentual.xgrid.grid_line_color = None
 grafico_percentual.ygrid.grid_line_color = None
+
+# Propiedades das ferramentas
+grafico_percentual.toolbar.logo = None
+grafico_percentual.toolbar.autohide = True
+
+# Tirando o Grid
+grafico_percentual.xgrid.grid_line_color = None
+grafico_percentual.ygrid.grid_line_color = None
+
+#-------------------------------------------------------------------------------------
 
 combinados = gridplot([[grafico_anos_mortes, grafico_anos_pop],[grafico_anos_mortes_100k],[grafico_percentual]])
 show(combinados)
