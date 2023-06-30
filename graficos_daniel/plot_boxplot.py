@@ -1,4 +1,4 @@
-from organizing_data_boxplot import kinds, source_continents_boxplot, outliers
+from organizing_data_boxplot import kinds, source_continents_boxplot, outliers_continents_boxplot
 
 from bokeh.models import ColumnDataSource, Whisker, NumeralTickFormatter, HoverTool
 from bokeh.plotting import show, save, output_file, figure
@@ -35,7 +35,7 @@ boxplot_cardiovascular_deaths.vbar("kind", 0.7, "q2", "q3", source=source_contin
 boxplot_cardiovascular_deaths.vbar("kind", 0.7, "q1", "q2", source=source_continents_boxplot, color=cmap, line_color="black")
 
 # fazendo outliers com scatter plot
-boxplot_cardiovascular_deaths.scatter("kind", "Per 100k", source=outliers, size=6, color="black", alpha=0.3)
+boxplot_cardiovascular_deaths.scatter("kind", "Per 100k", source=outliers_continents_boxplot, size=6, color="black", alpha=0.3)
 
 #===========================================================================
 # Personalizando
@@ -74,6 +74,3 @@ boxplot_cardiovascular_deaths.grid.grid_line_color = None
 # Propiedades das ferramentas
 boxplot_cardiovascular_deaths.toolbar.logo = None
 boxplot_cardiovascular_deaths.toolbar.autohide = True
-
-# plotando
-save(boxplot_cardiovascular_deaths)

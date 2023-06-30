@@ -1,4 +1,4 @@
-from organizing_data_homicides import data_homicides_by_continent, data_homicides_by_continent_proportion, df_homicides_by_continent
+from organizing_data_homicides import data_homicides_by_continent, source_homicides_by_continent_proportion, df_homicides_by_continent
 from bokeh.plotting import figure, output_file, show
 from bokeh.layouts import gridplot
 from bokeh.models import NumeralTickFormatter, Span, Label
@@ -99,7 +99,7 @@ plot_conflict_terrorism.yaxis.axis_label = "Mortes"
 # mortes por violencia interpessoal por continente em proporção à população total
 plot_interpersonal_violence_proportion = figure(x_range = df_homicides_by_continent["Continente"].values)
 
-plot_interpersonal_violence_proportion.vbar(x = "Continente", top = "Inverted Violence Proportion", fill_color = "Red", width = 0.85, source = data_homicides_by_continent_proportion, line_color = None)
+plot_interpersonal_violence_proportion.vbar(x = "Continente", top = "Inverted Violence Proportion", fill_color = "Red", width = 0.85, source = source_homicides_by_continent_proportion, line_color = None)
 plot_interpersonal_violence_proportion.yaxis.formatter = NumeralTickFormatter(format = '0.0a')
 
 # Personalizando
@@ -124,7 +124,7 @@ plot_interpersonal_violence_proportion.xaxis.major_label_orientation = 0.785
 # mortes por conflitos e terrorismo por continente em proporção à população total
 plot_conflict_terrorism_proportion = figure(x_range = df_homicides_by_continent["Continente"].values)
 
-plot_conflict_terrorism_proportion.vbar(x = "Continente", top = "Inverted Conflict Proportion", fill_color = "Red", width = 0.85, source = data_homicides_by_continent_proportion, line_color = None)
+plot_conflict_terrorism_proportion.vbar(x = "Continente", top = "Inverted Conflict Proportion", fill_color = "Red", width = 0.85, source = source_homicides_by_continent_proportion, line_color = None)
 plot_conflict_terrorism_proportion.yaxis.formatter = NumeralTickFormatter(format = '0.0a')
 
 # Personalizando

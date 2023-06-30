@@ -2,7 +2,7 @@ from bokeh.palettes import brewer
 from bokeh.plotting import figure, output_file, show
 from bokeh.models import NumeralTickFormatter
 
-from organizing_data_elderly_diseases import causes, data_deaths_elderly_through_years
+from organizing_data_elderly_diseases import causes, source_deaths_elderly_through_years
 
 import os
 os.chdir("plot_doencas_idosos")
@@ -21,7 +21,7 @@ number_of_causes = len(causes)
 plot_elderly_diseases = figure()
 
 # grafico de barra empilhada
-plot_elderly_diseases.varea_stack(stackers=causes, x = "Year", color = brewer["RdYlBu"][number_of_causes], legend_label = causes, source = data_deaths_elderly_through_years)
+plot_elderly_diseases.varea_stack(stackers=causes, x = "Year", color = brewer["RdYlBu"][number_of_causes], legend_label = causes, source = source_deaths_elderly_through_years)
 
 #=================================
 #Personalizando
