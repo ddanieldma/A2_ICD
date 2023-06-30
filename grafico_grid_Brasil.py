@@ -1,6 +1,6 @@
 import sys
 sys.path.append('../A2_ICD')
-from analisando_a_base import df_causas_de_morte_Brasil
+from ColumnDataSource import source_grid_Brasil,df_causas_de_morte_Brasil
 import pandas as pd
 from bokeh.plotting import figure, show
 from bokeh.io import output_file, save, show
@@ -10,32 +10,10 @@ from bokeh.models import ColumnDataSource, FactorRange, BasicTicker, PrintfTickF
 from bokeh.transform import linear_cmap
 from math import pi
 
-# Definindo os anos como string para poder plotar os gráficos
-df_causas_de_morte_Brasil["Year"]=df_causas_de_morte_Brasil["Year"].astype(str)
-
-df_causas_de_morte_Brasil["Percentual change in the population"]= df_causas_de_morte_Brasil["Population"].pct_change()
-df_causas_de_morte_Brasil["Percentual change in the deaths"] = df_causas_de_morte_Brasil["Total Deaths"].pct_change()
-df_causas_de_morte_Brasil["Percental change in the 100k deaths"] = df_causas_de_morte_Brasil["Deaths per 100k"].pct_change()
-df_causas_de_morte_Brasil["pct_pop - pct_death"]= df_causas_de_morte_Brasil["Percentual change in the population"]-df_causas_de_morte_Brasil["Percentual change in the deaths"]
-df_causas_de_morte_Brasil = df_causas_de_morte_Brasil.dropna()
-
-#Adicionando coluna para a cor
-def verde_ou_vermelho(x):
-    if x > 0:
-        return 'green'
-    else:
-        return 'red'
-df_causas_de_morte_Brasil.loc[:, 'Cor'] = df_causas_de_morte_Brasil['pct_pop - pct_death'].apply(verde_ou_vermelho)
-
-# Transformando o nosso datafram em ColumnDataSource
-source = ColumnDataSource(df_causas_de_morte_Brasil)
-
-#-------------------------------------------------------------------------------------
-
 # Gráfico anos e mortes por 100k
 grafico_anos_mortes_100k = figure(x_range=df_causas_de_morte_Brasil["Year"],
                                  tools="box_zoom,pan,reset,save,wheel_zoom")
-grafico_anos_mortes_100k.line(x="Year", y="Deaths per 100k", line_color = "black" ,source=source)
+grafico_anos_mortes_100k.line(x="Year", y="Deaths per 100k", line_color = "black" ,source=source_grid_Brasil)
 
 # Adicionando interatividade ao gráfico
 interativo_anos_mortes_100k = HoverTool(tooltips=[("Ano", "@Year"), ("Mortes por 100 mil habitantes", "@{Deaths per 100k}")])
@@ -79,7 +57,7 @@ grafico_anos_mortes_100k.toolbar.autohide = True
 #-------------------------------------------------------------------------------------
 # Gráfico anos e mortes
 grafico_anos_mortes = figure(x_range = df_causas_de_morte_Brasil["Year"])
-grafico_anos_mortes.line(x="Year", y = "Total Deaths", line_color = "black" ,source = source)
+grafico_anos_mortes.line(x="Year", y = "Total Deaths", line_color = "black" ,source = source_grid_Brasil)
 
 interativo_anos_mortes = HoverTool(tooltips=[("Ano", "@Year"), ("Mortes", "@{Total Deaths}")])
 grafico_anos_mortes.add_tools(interativo_anos_mortes)
@@ -128,7 +106,7 @@ grafico_anos_mortes.ygrid.grid_line_color = None
 # Gráfico população
 
 grafico_anos_pop = figure(x_range = df_causas_de_morte_Brasil["Year"])
-grafico_anos_pop.line(x="Year", y = "Population", line_color = "black",source = source)
+grafico_anos_pop.line(x="Year", y = "Population", line_color = "black",source = source_grid_Brasil)
 
 interativo_anos_pop = HoverTool(tooltips=[("Ano", "@Year"), ("População", "@Population")])
 grafico_anos_pop.add_tools(interativo_anos_pop)
@@ -177,7 +155,7 @@ grafico_anos_pop.ygrid.grid_line_color = None
 # Gráfico percentual change
 grafico_percentual = figure(x_range = df_causas_de_morte_Brasil["Year"])
 
-grafico_percentual.vbar(x= "Year", top = "pct_pop - pct_death", width = 0.8 , color = "Cor", fill_alpha = 0.4, line_alpha = 0.4 ,source = source)
+grafico_percentual.vbar(x= "Year", top = "pct_pop - pct_death", width = 0.8 , color = "Cor", fill_alpha = 0.4, line_alpha = 0.4 ,source = source_grid_Brasil)
 # grafico_percentual.line(x = "Year", y= "Percentual change in the population", line_color = "red", source = source)
 # grafico_percentual.line(x = "Year", y= "Percentual change in the deaths", line_color = "purple", source = source)
 
