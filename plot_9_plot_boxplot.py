@@ -1,13 +1,8 @@
-from organizing_data_boxplot import kinds, source_continents_boxplot, outliers_continents_boxplot
+from ColumnDataSource import kinds, source_continents_boxplot, outliers_continents_boxplot
 
 from bokeh.models import ColumnDataSource, Whisker, NumeralTickFormatter, HoverTool
-from bokeh.plotting import show, save, output_file, figure
+from bokeh.plotting import show, save, figure
 from bokeh.transform import factor_cmap
-
-import os
-os.chdir("box_plot")
-
-output_file("boxplot.html")
 
 # ferramenta de interatividade
 hover_tool = HoverTool(

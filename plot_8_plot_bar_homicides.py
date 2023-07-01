@@ -1,4 +1,4 @@
-from organizing_data_homicides import data_homicides_by_continent, source_homicides_by_continent_proportion, df_homicides_by_continent
+from ColumnDataSource import data_homicides_by_continent, source_homicides_by_continent_proportion, df_homicides_by_continent
 from bokeh.plotting import figure, output_file, show
 from bokeh.layouts import gridplot
 from bokeh.models import NumeralTickFormatter, Span, Label

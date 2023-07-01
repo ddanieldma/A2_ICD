@@ -199,8 +199,3 @@ grid_hiv_africa = gridplot([[plot_1, plot_2], [plot_3, plot_4]])
 
 grid_hiv_africa.toolbar.autohide = True
 grid_hiv_africa.toolbar.logo = None
-
-output_file("grid_plot.html")
-
-save(grid_hiv_africa)
-show(grid_hiv_africa)

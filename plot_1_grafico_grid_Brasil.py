@@ -230,4 +230,3 @@ grafico_percentual.toolbar.autohide = True
 combinados = gridplot([[grafico_anos_mortes, grafico_anos_pop],[grafico_anos_mortes_100k, grafico_percentual]])
 combinados.toolbar.autohide = True
 combinados.toolbar.logo = None
-show(combinados)

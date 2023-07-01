@@ -53,6 +53,3 @@ tiles = heatmap.rect(x = "Year", y = "Disease_Name",  width = 1, height=1, fill_
 # Adicionando uma escala com grid de cores
 heatmap.add_layout(tiles.construct_color_bar(major_label_text_font_size="12px", ticker=BasicTicker(desired_num_ticks=len(colors)),
     formatter=PrintfTickFormatter(format="%0d"), label_standoff=7,border_line_color=None,padding=5,), 'right')
-
-# Adicionando o grid ao heatmap
-show (heatmap)

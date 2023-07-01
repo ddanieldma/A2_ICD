@@ -61,6 +61,3 @@ grafico_juntos.toolbar.autohide = True
 # Adicionando cor de fundo
 grafico_juntos.background_fill_color = "blue"
 grafico_juntos.background_fill_alpha = 0.1
-
-# #mostrando o gráfico
-show(grafico_juntos)

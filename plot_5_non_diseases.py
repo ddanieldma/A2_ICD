@@ -56,6 +56,3 @@ non_disease_fig.toolbar.logo = None
 
 non_disease_fig.background_fill_color = "green"
 non_disease_fig.background_fill_alpha = 0.1
-
-show(non_disease_fig)
-

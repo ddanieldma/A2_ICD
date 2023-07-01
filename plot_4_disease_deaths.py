@@ -57,6 +57,3 @@ disease_fig.toolbar.logo = None
 disease_fig.background_fill_color = "green"
 disease_fig.background_fill_alpha = 0.1
 
-
-show(disease_fig)
-

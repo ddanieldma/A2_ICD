@@ -1,16 +1,8 @@
 from bokeh.palettes import brewer
-from bokeh.plotting import figure, output_file, show
+from bokeh.plotting import figure, show
 from bokeh.models import NumeralTickFormatter
 
-from organizing_data_elderly_diseases import causes, source_deaths_elderly_through_years
-
-import os
-os.chdir("plot_doencas_idosos")
-
-#=================================
-
-# mortes causadas por doenças que afetam principalmente a população idosa (doenças cardiovasculares não inclusas)
-output_file("deaths_from_old_people_diseases.html")
+from ColumnDataSource import causes, source_deaths_elderly_through_years
 
 #=================================
 
@@ -68,6 +60,3 @@ plot_elderly_diseases.toolbar.autohide = True
 
 # legenda
 plot_elderly_diseases.legend.location = "top_left"
-
-# plotando
-show(plot_elderly_diseases)

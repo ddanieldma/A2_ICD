@@ -52,5 +52,3 @@ drowning_fig.toolbar.logo = None
 
 drowning_fig.background_fill_color = "blue"
 drowning_fig.background_fill_alpha = 0.1
-
-show(drowning_fig)
