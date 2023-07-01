@@ -4,15 +4,11 @@ from bokeh.plotting import figure
 from bokeh.io import output_file, save, show
 from bokeh.models.annotations import Span, BoxAnnotation
 from bokeh.models import ColumnDataSource, FactorRange, HoverTool, NumeralTickFormatter
-from bokeh.palettes import brewer
-from ColumnDataSource import source_grafico_nested, continentes
+from ColumnDataSource import source_grafico_nested, continentes_unicos
 
 # Plotando o gráfico
-grafico_juntos = figure(x_range = FactorRange(*continentes))
-grafico_juntos.vbar(x = "agrupado" , top = "numero_de_casos",
-                    color = "Cor", width = 0.8, 
-                    legend_field = "Doenca",
-                    source=source_grafico_nested)
+grafico_juntos = figure(x_range = FactorRange(*continentes_unicos))
+grafico_juntos.vbar(x = "agrupado" , top = "numero_de_casos", color = "Cor", width = 0.8, legend_field = "Doenca", source=source_grafico_nested)
 
 grafico_juntos.legend.label_text_font = "Arial"
 
@@ -61,3 +57,5 @@ grafico_juntos.toolbar.autohide = True
 # Adicionando cor de fundo
 grafico_juntos.background_fill_color = "blue"
 grafico_juntos.background_fill_alpha = 0.1
+
+show(grafico_juntos)

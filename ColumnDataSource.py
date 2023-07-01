@@ -73,10 +73,10 @@ for doenca in source_grafico_nested.data["Doenca"]:
 source_grafico_nested.data["Cor"] = cor_column
 
 # Adicionando uma lisa única com os continentes para para ajudar a plotar o gráfico
-continentes = []
+continentes_unicos = []
 for continente in continentes_disease:
-    if continente not in continentes:
-        continentes.append(continente)
+    if continente not in continentes_unicos:
+        continentes_unicos.append(continente)
 
 #-----------------------------------------------------------------------------------------------------------------------------
 # Gráfico 2 - Heatmap
