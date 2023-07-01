@@ -8,6 +8,8 @@ from bokeh.models.annotations import Span, BoxAnnotation
 from bokeh.models import ColumnDataSource, FactorRange, HoverTool, NumeralTickFormatter
 from bokeh.palettes import brewer, viridis
 
+import warnings
+warnings.filterwarnings("ignore")
 
 # Lendo os dados
 df_causas_de_morte = pd.read_csv("new_cause_of_death.csv")
